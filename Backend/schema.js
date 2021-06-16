@@ -5,6 +5,8 @@ const influencerSchema = new mongoose.Schema({
     firstname: String,
     lastname: String,
     email: String,
+    Language : String,
+    Categories: String,
     mobNumber: Number,
     altMobNumber:Number,
     youtubeChannel : String,
@@ -17,6 +19,19 @@ const influencerSchema = new mongoose.Schema({
     postPrice: Number,
     referral:String,
 })
+
+// influencerSchema.methods.addMessage = async function(youtubeChannel){
+//     try{
+//         this.youtubeChannel = this.youtubeChannel.concat({youtubeChannel})
+//         await this.save();
+//         return this.youtubeChannel;
+//     }
+//     catch(err){
+//         console.log("err")
+//     }
+// }
+
+
 
 const Influencer = mongoose.model('influencer', influencerSchema)
 
