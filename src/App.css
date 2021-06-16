@@ -1,0 +1,72 @@
+.App{
+  padding: 20px;
+  min-height: 100vh;
+  text-align: center;
+  /* background:linear-gradient(45deg,green,yellow,rgb(136, 130, 130),rgb(125, 126, 125),rgb(138, 137, 137),rgb(185, 187, 185),rgb(172, 171, 171),rgb(184, 182, 182),rgb(165, 159, 159),yellow,green); */
+  background-color: rgb(46, 49, 51);
+
+}
+.app {
+  text-align: center;
+  background-color: rgb(46, 49, 51);
+  min-height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  color:black;
+}
+
+.InfluencerAccess,.BrandLogin{
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.profile__pic{
+  margin: 10px;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  background-color: rgb(188, 206, 212);
+}
+
+.profile__pic>img{
+  object-fit: contain;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+}
+.info__box{
+  width: auto;
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: rgb(188, 206, 212);
+  text-align: center;
+  border-style: none;
+}
+.boxWidth{
+  width: 47vw;
+}
+.info__box__youTube{
+  width: 21vw;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: rgb(188, 206, 212);
+  text-align: center;
+  border-style: none;
+}
+.AddNew{
+  border-radius: 5px;
+  margin:10px ;
+  padding: 10px;
+  background-color: rgb(188, 206, 212);
+  text-align: center;
+  border-style: none;
+}

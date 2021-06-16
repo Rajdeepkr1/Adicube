@@ -1,0 +1,82 @@
+
+h3,h4{
+    margin-top: 2em;
+    margin-bottom:5px;
+    color: white;
+    font-weight: bolder;
+}
+.Admin__Login{
+    margin-top: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+}
+.master{
+    margin-top: 2em;
+    border-top: 4px solid black;
+    border-radius: 5px;
+    border-bottom: 4px solid black;
+    margin-bottom: 2em;
+    padding-bottom: 2em;
+}
+.master__user{
+    
+
+    padding-top: 20px ;
+    padding-bottom: 20px ;
+    display: flex;
+    justify-content: space-evenly;
+}
+.Log__in{
+    border-radius: 5px;
+    padding: 7px;
+    width: 20em;
+    border: 2px solid black;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.button__style{
+    border-radius: 5px;
+    padding: 5px;
+    width: 2em;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: none;
+}
+.brandlist{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    
+    
+   
+}
+
+.brand__{
+    display: flex;
+    margin-top: 10px;
+    justify-content: space-around;
+      
+}
+.influencer__s{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    
+}
+.influencer__{
+    display: flex;
+    margin-top: 10px;
+    justify-content: space-around;
+}
+.button__{
+    display: flex;
+}
+
+.Not__master{
+    border-bottom: 4px solid black;
+    padding-bottom: 100px;
+}
+
