@@ -2,7 +2,7 @@
   "name": "adicube-assignment",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://git.heroku.com/adicube-server.git",
+  "proxy": "https://adicube-server.herokuapp.com/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.13.0",
     "@testing-library/react": "^11.2.7",
