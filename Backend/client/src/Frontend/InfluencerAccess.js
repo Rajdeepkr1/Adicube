@@ -109,9 +109,7 @@ const InfluencerAccess = () => {
       <Header />
       <div method="POST">
         <div className="InfluencerAccess">
-//           <h1 style={{ color: "white", fontWeight: "bold" }}>
-//             Influencer Access
-//           </h1>
+    
           <div className="InfluencerAccess__box">
             <input
               className="info__box"
