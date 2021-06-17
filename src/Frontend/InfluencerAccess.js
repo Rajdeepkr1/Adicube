@@ -3,7 +3,6 @@ import Header from "./Header";
 import "./Header.css";
 
 const InfluencerAccess = () => {
-  const [ele, setEle] = useState([]);
 
   const [input, setInput] = useState({
     firstname: "",
@@ -29,12 +28,11 @@ const InfluencerAccess = () => {
     name = e.target.name;
     value = e.target.value;
     setInput({ ...input, [name]: value });
-    console.log(input);
   };
 
   const onSubmit = async (e) => {
+    console.log("invoke")
     e.preventDefault();
-    console.log("invoke");
 
     const {
       firstname,
@@ -80,104 +78,31 @@ const InfluencerAccess = () => {
       }),
     });
     const res = await data.json();
-    if (res.status === 400 || !res) {
-      console.log("Data Failed");
+    if (res.statusCode === 400 || !res) {
+      alert("YoutubeLink is already exist");
     } else {
-      console.log("Successful");
+      alert("Data Successfully Saved!!");
     }
+
+    setInput({
+      firstname: "",
+      lastname: "",
+      email: "",
+      mobNumber: "",
+      altMobNumber: "",
+      youtubeChannel: "",
+      intVideoPrice: "",
+      dediVideoPrice: "",
+      Language: "",
+      Categories: "",
+      preRolPrice: "",
+      instaChannel: "",
+      storePrice: "",
+      reelPrice: "",
+      postPrice: "",
+      referral: "",
+    })
   };
-
-  const handleAdd = (e) => {
-    console.log("Invoke");
-
-    const element = (
-      <>
-        <div className="InfluencerAccess__box">
-          <input
-            className="info__box__youTube"
-            type="text"
-            placeholder="YouTube channel link*"
-          />
-          <button className="AddNew" onClick={handleMinus}>-</button>
-          <br />
-          <input
-            className="info__box"
-            type="number"
-            placeholder="Integrated Video Price*"
-          />
-          <input
-            className="info__box"
-            type="number"
-            placeholder="Integrated Video Price*"
-          />
-          <input
-            className="info__box"
-            type="number"
-            placeholder="Integrated Video Price*"
-          />
-          <div className="container__dropdown">
-            <div className="Categories">
-              <div className="Categories__style">
-                <label className="Categories__lable" htmlFor="Categories">
-                  Categories
-                </label>
-                <select value={input.value} name="Categories" onChange={handleInputs}>
-                  <option defaultValue  >Categories</option>
-                  <option value="Travel" >Travel</option>
-                  <option value="Gaming">Gaming</option>
-                  <option value="Roasts">Roasts</option>
-                  <option value="Vines">Vines</option>
-                  <option value="Pranks">Pranks</option>
-                  <option value="Motivation">Motivation</option>
-                  <option value="News">News</option>
-                  <option value="Moto-Vlogs">Moto-Vlogs</option>
-                  <option value="Beauty">Beauty</option>
-                  <option value="Vlogs">Vlogs</option>
-                  <option value="Finance">Finance</option>
-                  <option value="Technology">Technology</option>
-                  <option value="Experiment">Experiment</option>
-                  <option value="Health and Fitness">Health and Fitness</option>
-                  <option value="Music">Music</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="Language">
-              <div className="Language__style">
-                <label className="Categories__lable" htmlFor="Language">
-                  Language
-                </label><br/>
-                <select value={input.value} name="Language" onChange={handleInputs}>
-                  <option defaultValue>Language</option>
-                  <option value="Hindi">Hindi</option>
-                  <option value="Tamil">Tamil</option>
-                  <option value="Odia">Odia</option>
-                  <option value="Marathi">Marathi</option>
-                  <option value="Telugu">Telugu</option>
-                  <option value="Malayalam">Malayalam</option>
-                  <option value="Gujrati">Gujrati</option>
-                  <option value="Bhojpuri">Bhojpuri</option>
-                  <option value="English">English</option>
-                  <option value="Haryanvi">Haryanvi</option>
-                  <option value="Bengali">Bengali</option>
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
-      </>
-    );
-
-    const copyele = [...ele, element];
-    setEle(copyele);
-  };
-
-  const handleMinus = (index) =>{
-    const updatedArr = ele.filter((item, id)=>{
-      return index !== id;
-    });
-    setEle(updatedArr);
-    };
 
   return (
     <>
@@ -187,12 +112,6 @@ const InfluencerAccess = () => {
           <h1 style={{ color: "white", fontWeight: "bold" }}>
             Influencer Access
           </h1>
-          <div className="profile__pic">
-            <img
-              src="https://i.pinimg.com/originals/f1/3f/9c/f13f9c23ccfe9acd9ecca7acf95a4af2.jpg"
-              alt="profile__pic"
-            />
-          </div>
           <div className="InfluencerAccess__box">
             <input
               className="info__box"
@@ -215,7 +134,7 @@ const InfluencerAccess = () => {
             <input
               className="info__box boxWidth"
               type="email"
-              placeholder="Office E-mail address*"
+              placeholder="E-mail address*"
               value={input.email}
               name="email"
               onChange={handleInputs}
@@ -249,12 +168,9 @@ const InfluencerAccess = () => {
               type="text"
               placeholder="YouTube channel link*"
             />
-            <button className="AddNew" onClick={handleAdd}>
-              +
-            </button>
           </div>
 
-          <div className="InfluencerAccess__box">
+          <div className="InfluencerAccess__box" >
             <input
               className="info__box"
               type="number"
@@ -280,14 +196,13 @@ const InfluencerAccess = () => {
               onChange={handleInputs}
             />
           </div>
-
           <div className="container__dropdown">
             <div className="Categories">
               <div className="Categories__style">
                 <label className="Categories__lable" htmlFor="Categories">
                   Categories
                 </label>
-                <select value={input.value} name="Categories" onChange={handleInputs}>
+                <select value={input.Categories} name="Categories" onChange={handleInputs}>
                   <option defaultValue  >Categories</option>
                   <option value="Travel" >Travel</option>
                   <option value="Gaming">Gaming</option>
@@ -313,7 +228,7 @@ const InfluencerAccess = () => {
                 <label className="Categories__lable" htmlFor="Language">
                   Language
                 </label><br/>
-                <select value={input.value} name="Language" onChange={handleInputs}>
+                <select value={input.Language} name="Language" onChange={handleInputs}>
                   <option defaultValue>Language</option>
                   <option value="Hindi">Hindi</option>
                   <option value="Tamil">Tamil</option>
@@ -331,9 +246,9 @@ const InfluencerAccess = () => {
             </div>
           </div>
 
-          {ele.map((elem, index) => (
+          {/* {ele.map((elem, index) => (
             <div key={index}>{elem}</div>
-          ))}
+          ))} */}
 
           <div className="InfluencerAccess__box">
             <input

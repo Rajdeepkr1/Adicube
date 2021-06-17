@@ -23,9 +23,6 @@ router.post("/", (req, res) => {
     password,
   } = req.body;
 
-//   console.log(req.body);
-//   res.json({ message: req.body });
-
   Brand.findOne({ Email: Email })
     .then((userExist) => {
       if (userExist) {

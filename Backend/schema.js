@@ -20,19 +20,6 @@ const influencerSchema = new mongoose.Schema({
     referral:String,
 })
 
-// influencerSchema.methods.addMessage = async function(youtubeChannel){
-//     try{
-//         this.youtubeChannel = this.youtubeChannel.concat({youtubeChannel})
-//         await this.save();
-//         return this.youtubeChannel;
-//     }
-//     catch(err){
-//         console.log("err")
-//     }
-// }
-
-
-
 const Influencer = mongoose.model('influencer', influencerSchema)
 
 
