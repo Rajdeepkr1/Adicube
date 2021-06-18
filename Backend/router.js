@@ -6,9 +6,9 @@ require("./connection");
 
 const Brand = require("./schema");
 
-// router.get("/", (req, res) => {
-//   res.send("Hello from route");
-// });
+router.get("/", (req, res) => {
+  res.send("Hello from route");
+});
 
 router.post("/", (req, res) => {
   const {

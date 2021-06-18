@@ -1,8 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./admin.css";
 const AdminMaster = () => {
+
+  const [data,setData] = useState("")
+
+
+  const onSubmit = async (e) => {
+    console.log("invoke")
+    e.preventDefault();
+  const data = await fetch("/register")
+  const res = await data.json();
+    if (res.statusCode === 400 || !res) {
+      console.log("error");
+    } else {
+      console.log(data)
+    }
+}
+     
+
   return (
-    <div>
+    <div method="GET">
+        <div> {data}</div>
+
+
         <div className="master">
           <h3>IF MASTER USER</h3>
         <div className="master__user">
@@ -18,7 +38,7 @@ const AdminMaster = () => {
             />
 
             <div className="button__">
-              <button className="button__style" style={{ backgroundColor: "lightgreen" }}>
+              <button type="submit" onClick={onSubmit} className="button__style" style={{ backgroundColor: "lightgreen" }}>
                 A
               </button>
               <button className="button__style" style={{ backgroundColor: "red" }}>

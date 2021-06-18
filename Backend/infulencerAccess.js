@@ -5,6 +5,12 @@ require("./connection");
 
 const Influencer = require("./schema");
 
+router.get("/register", (req, res) => {
+  Influencer.find({}).then(eachOne =>{
+    res.json(eachOne)
+  })
+});
+
 router.post('/register', (req, res) => {
 
   const{

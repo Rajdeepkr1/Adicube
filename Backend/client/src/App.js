@@ -7,11 +7,11 @@ function App() {
   return (
     <div className="App">
       <Switch>
-        <Route path="/">
+        <Route path="/influencerAccess">
           <InfluencerAccess />
         </Route>
 
-        {/* <Route path="/BrandLogin">
+        <Route path="/BrandLogin">
           <BrandLogin />
         </Route>
 
@@ -21,7 +21,7 @@ function App() {
 
         <Route path="/">
         <MainPage />
-        </Route> */}
+        </Route>
 
         
       </Switch>
