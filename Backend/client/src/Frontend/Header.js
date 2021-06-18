@@ -12,7 +12,7 @@ const Header = () => {
         <div className="influencer__Access">Influencer Access</div>
       </Link>
 
-      <Link
+      {/* <Link
         to="/BrandLogin"
         style={{ textDecoration: "none", fontWeight: "bold" }}
       >
@@ -28,7 +28,7 @@ const Header = () => {
 
       <Link to="/Admin" style={{ textDecoration: "none", fontWeight: "bold" }}>
         <div className="homePage">Admin</div>
-      </Link>
+      </Link> */}
     </div>
   );
 };
