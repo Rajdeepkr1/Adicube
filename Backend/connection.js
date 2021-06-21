@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 
-// const DB = process.env.DATABASE;
+const DB = process.env.DATABASE;
 
-const DB = 'mongodb+srv://adicube:adicube@cluster0.1ndxv.mongodb.net/Brand?retryWrites=true&w=majority';
+//const DB = 'mongodb+srv://adicube:adicube@cluster0.1ndxv.mongodb.net/Brand?retryWrites=true&w=majority';
 
 mongoose
   .connect(DB, {
