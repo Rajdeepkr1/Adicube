@@ -35,7 +35,7 @@ const AdminMaster = () => {
   const deleteUser = (id) => {
     console.log(id);
     let copy = [...user];
-    copy=copy.filter(item=>item._id!==id);
+    copy = copy.filter((item) => item._id !== id);
     setUser(copy);
     // fetch(`http://localhost:4000/register/${id}`,{
     //   method:"DELETE"
@@ -63,6 +63,7 @@ const AdminMaster = () => {
                   {user.map((item, index) => (
                     <li className="Log__in" index={index} key={`${item._id}`}>
                       {`${item.firstname} ${item.lastname}`}
+
                       <div className="button__">
                         <button
                           onClick={() => onAccept(item._id)}

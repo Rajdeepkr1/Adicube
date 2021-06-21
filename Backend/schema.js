@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 const influencerSchema = new mongoose.Schema({
+    profilePic:String,
     firstname: {
         type:String,
         required : true
@@ -52,6 +53,7 @@ const Influencer = mongoose.model('influencer', influencerSchema)
 
 
 const brandSchema = new mongoose.Schema({
+    profilePic:String,
     firstname: {
         type:String,
         required : true
@@ -64,7 +66,7 @@ const brandSchema = new mongoose.Schema({
         type:String,
         required : true
     },
-    number: {
+    mobNumber: {
         type : Number,
         min : 10,
         required : true
@@ -99,4 +101,5 @@ brandSchema.pre('save', async function(next){
 
 const Brand = mongoose.model('Brand', brandSchema)
 
-module.exports = Influencer
+module.exports = Influencer;
+module.exports = Brand;

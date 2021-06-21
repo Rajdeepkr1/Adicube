@@ -23,12 +23,27 @@
   flex-direction: column;
 }
 
+.settingsPIcon{
+  color: white;
+  font-size: 40px;
+  font-weight: 600;
+  z-index: 999;
+ 
+  
+}
+
+.uplodeImage{
+  color: white;
+  z-index: 999;
+}
+
 .profile__pic{
   margin: 10px;
   height: 150px;
   width: 150px;
   border-radius: 50%;
   background-color: rgb(188, 206, 212);
+  margin-bottom: 50px;
 }
 
 .profile__pic>img{

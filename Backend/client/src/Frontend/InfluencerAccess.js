@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import Header from "./Header";
+import axios from "axios";
 import "./Header.css";
 
 const InfluencerAccess = () => {
+  const [file, setFile] = useState(null);
+  // const PublicFolder = "http://localhost:5000/uploads/"
 
   const [input, setInput] = useState({
     firstname: "",
@@ -53,12 +56,29 @@ const InfluencerAccess = () => {
       referral,
     } = input;
 
-    const data = await fetch("/register", {
+    if (file) {
+      const data = new FormData();
+      const filename = Date.now() + file.name;
+      data.append("name", filename);
+      data.append("file", file);
+      input.profilePic = filename;
+      try {
+        await axios.post("http://localhost:4000/Backend/upload", data);
+      } catch (err) {}
+      
+      await axios.post("http://localhost:4000/register", input);
+      
+    }
+    console.log(input)
+    
+
+    const data = await fetch("http://localhost:4000/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        file,
         firstname,
         lastname,
         email,
@@ -104,12 +124,33 @@ const InfluencerAccess = () => {
     })
   };
 
+  const user={
+    profilePic : "https://cdn4.iconfinder.com/data/icons/social-messaging-ui-color-and-shapes-3/177800/129-512.png"
+  }
+
+
   return (
     <>
       <Header />
       <div method="POST">
         <div className="InfluencerAccess">
-    
+
+
+        <div className="profile__pic">
+            
+            <img
+              src={file ? URL.createObjectURL(file) :  user.profilePic}
+              alt="profile"
+            />
+            <label htmlFor="fileInput">
+              {/* <i className="settingsPIcon fas fa-user-circle"></i>  */}
+              <span className="uplodeImage">UplodeImage</span>
+              <i className="settingsPIcon ">+</i>
+            </label>
+            <input type="file" id="fileInput" style={{ display: "none" }}
+            onChange={(e) => setFile(e.target.files[0])} />
+
+          </div>
           <div className="InfluencerAccess__box">
             <input
               className="info__box"
@@ -194,13 +235,13 @@ const InfluencerAccess = () => {
               onChange={handleInputs}
             />
           </div>
-          <div className="container__dropdown">
-            <div className="Categories">
-              <div className="Categories__style">
-                <label className="Categories__lable" htmlFor="Categories">
+          <div className="container__dropdown ">
+            <div className="Categories ">
+              <div className="Categories__style ">
+                <label className="Categories__lable " htmlFor="Categories">
                   Categories
                 </label>
-                <select value={input.Categories} name="Categories" onChange={handleInputs}>
+                <select className="info__box " value={input.Categories} name="Categories" onChange={handleInputs}>
                   <option defaultValue  >Categories</option>
                   <option value="Travel" >Travel</option>
                   <option value="Gaming">Gaming</option>
@@ -226,7 +267,7 @@ const InfluencerAccess = () => {
                 <label className="Categories__lable" htmlFor="Language">
                   Language
                 </label><br/>
-                <select value={input.Language} name="Language" onChange={handleInputs}>
+                <select className="info__box " value={input.Language} name="Language" onChange={handleInputs}>
                   <option defaultValue>Language</option>
                   <option value="Hindi">Hindi</option>
                   <option value="Tamil">Tamil</option>
