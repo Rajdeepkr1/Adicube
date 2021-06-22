@@ -11,8 +11,8 @@ require('./connection') // conection to router
 app.use(express.json()) // to understand the data to be in json
 app.use(cors());
 
-// const {Influencer, Brand} = require("./schema");
-const Influencer = require('./schema'); //link to schema
+const {Influencer, Brand} = require("./schema");
+// const Influencer = require('./schema'); //link to schema
 
 app.use(require('./infulencerAccess')) //link to router file
 

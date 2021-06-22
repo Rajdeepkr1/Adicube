@@ -6,12 +6,13 @@ import AdminNotMaster from "./AdminNotMaster";
 import "./admin.css";
 const Admin = () => {
   const master = 1;
+  const user =1;
   return (
     <div>
       <Header />
       <h3>ADMIN SCREEN</h3>
       <div className="Admin__scren">
-        {!master ? <AdminLogin /> : <><AdminMaster /> <AdminNotMaster /></>}
+        {!master ? <AdminLogin /> : (user ? <AdminMaster /> : <AdminNotMaster />)}
       </div>
     </div>
   );
