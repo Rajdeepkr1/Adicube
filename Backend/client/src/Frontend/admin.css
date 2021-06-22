@@ -30,6 +30,7 @@ h3,h4{
 }
 .Log__in{
     border-radius: 5px;
+    background-color: aliceblue;
     padding: 7px;
     width: 20em;
     border: 2px solid black;

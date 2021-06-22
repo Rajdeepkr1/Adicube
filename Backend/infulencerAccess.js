@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const multer = require("multer")
 require("./connection");
 
 const {Influencer, Brand} = require("./schema");
@@ -44,6 +45,27 @@ router.get("/register/:_id", async (req, res) => {
     console.log(err)
     res.send(err)
   }
+const storage = multer.diskStorage({
+  destination:(req,file,callback)=>{
+    callback(null,"images")
+  },
+  filename:(req,file,callback)=>{
+    callback(null,req.body.name);
+  }
+
+})
+
+const upload = multer({ storage: storage });
+});
+
+router.post("/Backend/upload", upload.single("file"), (req, res) => {
+    res.status(200).json("File has been uploaded");
+  });
+
+router.get("/register", (req, res) => {
+  Influencer.find({}).then(eachOne =>{
+    res.json(eachOne)
+  })
 });
 
 //api for accept
@@ -86,6 +108,7 @@ router.patch("/register/:_id", async (req, res) => {
 router.post('/register', (req, res) => {
 
   const{
+    profilePic,
     firstname,
     lastname,
     email,
@@ -112,6 +135,7 @@ router.post('/register', (req, res) => {
     }
 
     const newInfluencer = new Influencer({
+      profilePic,
       firstname,
       lastname,
       email,
@@ -192,10 +216,11 @@ router.patch("/brand/:_id", async (req, res) => {
 
 router.post("/brand", (req, res) => {
   const {
+    profilePic,
     firstname,
     lastname,
     email,
-    number,
+    mobNumber,
     companyName,
     campaignBudget,
     launchTiming,
@@ -210,11 +235,12 @@ router.post("/brand", (req, res) => {
         return res.status(400).json({ error: "email already exist",statusCode: 400 });
       }
 
-      const data = new Brand({
+      const newBrand = new Brand({
+        profilePic,
         firstname,
         lastname,
         email,
-        number,
+        mobNumber,
         companyName,
         campaignBudget,
         launchTiming,
@@ -261,6 +287,5 @@ router.post('/signIn', async (req, res)=>{
         res.json({err:"Error"})
     }
 })
-
 
 module.exports = router;

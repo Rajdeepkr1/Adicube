@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 
 
 const influencerSchema = new mongoose.Schema({
+    profilePic:String,
     firstname: {
         type:String,
         required : true
@@ -55,6 +56,7 @@ const Influencer = mongoose.model('influencer', influencerSchema)
 
 
 const brandSchema = new mongoose.Schema({
+    profilePic:String,
     firstname: {
         type:String,
         required : true
@@ -67,7 +69,7 @@ const brandSchema = new mongoose.Schema({
         type:String,
         required : true
     },
-    number: {
+    mobNumber: {
         type : Number,
         min : 10,
         required : true
