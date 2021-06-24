@@ -114,29 +114,7 @@ const AdminMaster = () => {
                   </button>
                 </div>
               </div>
-              <div className="brand__">
-                <input
-                  className="Log__in"
-                  name="loginId"
-                  type="text"
-                  placeholder="BRAND-B"
-                />
-
-                <div className="button__">
-                  <button
-                    className="button__style"
-                    style={{ backgroundColor: "lightgreen" }}
-                  >
-                    A
-                  </button>
-                  <button
-                    className="button__style"
-                    style={{ backgroundColor: "red" }}
-                  >
-                    R
-                  </button>
-                </div>
-              </div>
+              
             </div>
           </div>
           <div className="__master">

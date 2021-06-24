@@ -27,6 +27,7 @@ h3,h4{
     padding-bottom: 20px ;
     display: flex;
     justify-content: space-evenly;
+    
 }
 .Log__in{
     border-radius: 5px;

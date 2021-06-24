@@ -1,9 +1,9 @@
 .header__page {
-
+ position: sticky;
+ top: 0;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border-radius: 5px;
   padding: 10px;
   /* background:linear-gradient(45deg,green,yellow,rgb(114, 160, 108),rgb(166, 199, 89),rgb(112, 221, 98),rgb(126, 165, 99),yellow,green); */
   background-color: rgb(98, 104, 104);

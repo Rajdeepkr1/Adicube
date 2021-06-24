@@ -12,7 +12,7 @@ const Header = () => {
         <div className="influencer__Access">Influencer Access</div>
       </Link>
 
-      <Link
+      <Link     
         to="/BrandLogin"
         style={{ textDecoration: "none", fontWeight: "bold" }}
       >
