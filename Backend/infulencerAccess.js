@@ -1,11 +1,50 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const multer = require("multer")
 require("./connection");
 
-const Influencer = require("./schema");
+const {Influencer, Brand} = require("./schema");
 
+// filtered data with status pending
+router.get("/register", async (req, res) => {
+  try{
+    const data = await Influencer.find({"status":"pending"})
+    res.send(data)
+  }
+  catch(err){
+    console.log(err)
+    res.status(400).send(err)
+  }
+});
+// filtered by channel
+// router.get("/register", async (req, res) => {
+//   try{
+//     const data = await Influencer.find({"status":"pending"})
+//     res.send(data)
+//   }
+//   catch(err){
+//     console.log(err)
+//     res.status(400).send(err)
+//   }
+// });
+// only one user
+router.get("/register/:_id", async (req, res) => {
+  try{
+  const id = req.params._id;
+  const data = await Influencer.findById({_id:id})
+  if(!data){
+    return res.status(400).send();
+  }
+  else{
+  res.send(data)
+  }
+  }
+  catch(err){
+    console.log(err)
+    res.send(err)
+  }
 const storage = multer.diskStorage({
   destination:(req,file,callback)=>{
     callback(null,"images")
@@ -13,10 +52,12 @@ const storage = multer.diskStorage({
   filename:(req,file,callback)=>{
     callback(null,req.body.name);
   }
+
 })
 
-
 const upload = multer({ storage: storage });
+});
+
 router.post("/Backend/upload", upload.single("file"), (req, res) => {
     res.status(200).json("File has been uploaded");
   });
@@ -27,9 +68,42 @@ router.get("/register", (req, res) => {
   })
 });
 
-router.delete("/register", (req, res)=>{
-  Influencer.findOne({})
-})
+//api for accept
+router.put("/register/:_id", async (req, res) => {
+  try{
+  console.log(req.body);
+  const id = req.params._id;
+  const data = await Influencer.findByIdAndUpdate({_id:id},{$set:{status:"accepted"}})
+  if(!data){
+    return res.status(400).send();
+  }
+  else{
+  res.send(data)
+  }
+  }
+  catch(err){
+    console.log(err)
+    res.send(err)
+  }
+});
+// api for rejection
+router.patch("/register/:_id", async (req, res) => {
+  try{
+  console.log(req.body);
+  const id = req.params._id;
+  const data = await Influencer.findByIdAndUpdate({_id:id},{$set:{status:"rejected"}})
+  if(!data){
+    return res.status(400).send();
+  }
+  else{
+  res.send(data)
+  }
+  }
+  catch(err){
+    console.log(err)
+    res.send(err)
+  }
+});
 
 router.post('/register', (req, res) => {
 
@@ -50,7 +124,8 @@ router.post('/register', (req, res) => {
     storePrice,
     reelPrice,
     postPrice,
-    referral
+    referral,
+    status
   } = req.body;
 
   Influencer.findOne({youtubeChannel:req.body.youtubeChannel})
@@ -76,7 +151,8 @@ router.post('/register', (req, res) => {
       storePrice,
       reelPrice,
       postPrice,
-      referral
+      referral,
+      status
     });
 
   newInfluencer.save().then(() => {
@@ -88,10 +164,54 @@ router.post('/register', (req, res) => {
   });
 });
 
-const Brand = require("./schema");
+// const Brand = require("./schema");
 
-router.get("/brand", (req, res) => {
-  res.send("Hello from route");
+router.get("/brand", async (req, res) => {
+  try{
+    const data = await Brand.find({"status":"pending"})
+    res.send(data)
+  }
+  catch(err){
+    console.log(err)
+    res.status(400).send(err)
+  }
+});
+
+//api for accept
+router.put("/brand/:_id", async (req, res) => {
+  try{
+  console.log(req.body);
+  const id = req.params._id;
+  const data = await Brand.findByIdAndUpdate({_id:id},{$set:{status:"accepted"}})
+  if(!data){
+    return res.status(400).send();
+  }
+  else{
+  res.send(data)
+  }
+  }
+  catch(err){
+    console.log(err)
+    res.send(err)
+  }
+});
+// api for rejection
+router.patch("/brand/:_id", async (req, res) => {
+  try{
+  console.log(req.body);
+  const id = req.params._id;
+  const data = await Brand.findByIdAndUpdate({_id:id},{$set:{status:"rejected"}})
+  if(!data){
+    return res.status(400).send();
+  }
+  else{
+  res.send(data)
+  }
+  }
+  catch(err){
+    console.log(err)
+    res.send(err)
+  }
 });
 
 router.post("/brand", (req, res) => {
@@ -106,12 +226,13 @@ router.post("/brand", (req, res) => {
     launchTiming,
     loginId,
     password,
+    status
   } = req.body;
 
-  Brand.findOne({ Email: email })
+  Brand.findOne({ email: email })
     .then((userExist) => {
       if (userExist) {
-        return res.status(400).json({ error: "email already exist" });
+        return res.status(400).json({ error: "email already exist",statusCode: 400 });
       }
 
       const newBrand = new Brand({
@@ -125,10 +246,11 @@ router.post("/brand", (req, res) => {
         launchTiming,
         loginId,
         password,
+        status
       });
 
-      newBrand.save().then(() => {
-          res.status(201).json({message: "User registered"});
+      data.save().then(() => {
+          res.status(201).json({message: "Brand User registered"});
         })
         .catch(() => {
           res.status(500).send("User not registered");
@@ -142,12 +264,15 @@ router.post('/signIn', async (req, res)=>{
     try{
         const {email, password} = req.body;
         if(!email || !password){
-            return res.status(400).json({error:"Invalid Data"})
+            return res.status(400).json({error:"Not valid credentials"})
         }
-        const userlogin = await Brand.findOne({Email:email});
+        const userlogin = await Brand.findOne({email:email});
 
         if(userlogin){
-            const isMatch = await bcrypt.compare(password, userlogin.password)
+            const isMatch = await bcrypt.compare(password, userlogin.password);
+
+            const token = await userlogin.generateAuthToken()
+
         if(!isMatch){
             res.status(400).json({error:"Not valid credentials"})
         }
@@ -159,9 +284,8 @@ router.post('/signIn', async (req, res)=>{
     }
     }
     catch(err){
-        console.log(err);
+        res.json({err:"Error"})
     }
 })
-
 
 module.exports = router;

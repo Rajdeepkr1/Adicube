@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+
 
 const influencerSchema = new mongoose.Schema({
     profilePic:String,
@@ -47,6 +49,7 @@ const influencerSchema = new mongoose.Schema({
     reelPrice: Number,
     postPrice: Number,
     referral:String,
+    status : String
 })
 
 const Influencer = mongoose.model('influencer', influencerSchema)
@@ -88,7 +91,16 @@ const brandSchema = new mongoose.Schema({
     password: {
         type:String,
         required : true
-    }
+    },
+    status : String,
+    tokens : [
+        {
+            token : {
+                type:String,
+                required : true
+            }
+        }
+    ]
 })
 
 brandSchema.pre('save', async function(next){
@@ -96,10 +108,20 @@ brandSchema.pre('save', async function(next){
         this.password = await bcrypt.hash(this.password, 12);
     }
     next();
-    console.log("hehehe")
 })
+
+brandSchema.methods.generateAuthToken = async function (){
+    try{
+        let token = jwt.sign({_id:this._id}, process.env.SECRET)
+        this.tokens = this.tokens.concat({token:token})
+        await this.save()
+        return token;
+    }
+    catch(e){
+        console.log(e)
+    }
+}
 
 const Brand = mongoose.model('Brand', brandSchema)
 
-module.exports = Influencer;
-module.exports = Brand;
+module.exports = {Influencer, Brand}

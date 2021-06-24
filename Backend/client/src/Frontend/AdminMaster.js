@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import "./admin.css";
 const AdminMaster = () => {
   const [user, setUser] = useState([]);
-  const [flag, setFlag] = useState(true);
+  const [brandUser, setBrandUser] = useState([]);
+  const [searchBox, setSearchBox] = useState("");
 
-  const onSubmit = async (e) => {
-    console.log("invoke");
+  const influencerList = async (e) => {
     try {
       const res = await fetch("http://localhost:4000/register", {
         method: "GET",
@@ -15,39 +15,91 @@ const AdminMaster = () => {
         },
       });
       const data = await res.json();
-      console.log(data);
       setUser(data);
     } catch (err) {
       console.log(err);
     }
   };
+  const brandList = async (e) => {
+    try {
+      const res = await fetch("http://localhost:4000/brand", {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await res.json();
+      setBrandUser(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   useEffect(() => {
-    onSubmit();
+    influencerList();
   }, []);
-
-  // const onRemove = (key) => {
-  //   console.log("delete");
-  //   const copy = [...user];
-  //   copy.splice(key, 1);
-  //   setUser(copy);
-  // };
+  useEffect(() => {
+    brandList();
+  }, []);
 
   const deleteUser = (id) => {
     console.log(id);
     let copy = [...user];
     copy = copy.filter((item) => item._id !== id);
     setUser(copy);
-    // fetch(`http://localhost:4000/register/${id}`,{
-    //   method:"DELETE"
-    // }).then((result)=>result.json().then((res)=>console.log(res)))
+    fetch(`http://localhost:4000/register/${id}`,{
+      method:"PATCH"
+    }).then((result)=>result.json().then((res)=>console.log(res)))
   };
 
-  const onAccept = (key) => {
-    console.log(key);
-    if (key) {
-      setFlag(false);
-    }
+  const onAccept = (id) => {
+    console.log(id);
+    let copy = [...user];
+    copy=copy.filter(item=>item._id!==id);
+    setUser(copy);
+    fetch(`http://localhost:4000/register/${id}`,{
+      method:"PUT"
+    }).then((result)=>result.json().then((res)=>console.log(res)))
   };
+
+  const rejectBrandUser = (id) => {
+    console.log(id);
+    let copy = [...brandUser];
+    copy=copy.filter(item=>item._id!==id);
+    setBrandUser(copy);
+    fetch(`http://localhost:4000/brand/${id}`,{
+      method:"PATCH"
+    }).then((result)=>result.json().then((res)=>console.log(res)))
+  };
+
+  const acceptBrandUser = (id) => {
+    console.log(id);
+    let copy = [...brandUser];
+    copy=copy.filter(item=>item._id!==id);
+    setBrandUser(copy);
+    fetch(`http://localhost:4000/brand/${id}`,{
+      method:"PUT"
+    }).then((result)=>result.json().then((res)=>console.log(res)))
+  };
+
+  const searchChannel = async (e) =>{
+    e.preventDefault();
+
+    try{
+      const res = await fetch("http://localhost:4000/brand", {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        }
+      });
+      const data = await res.json();
+    }
+    catch(e){
+      console.log(e)
+    }
+
+  }
 
   return (
     <>
@@ -87,36 +139,41 @@ const AdminMaster = () => {
                   ))}
                 </ul>
               </div>
-            </div>
+              </div>
 
             <div className="brandlist">
               <h3>LIST OF BRANDS</h3>
               <div className="brand__">
-                <input
-                  className="Log__in"
-                  name=""
-                  type="text"
-                  placeholder="BRAND-A"
-                />
-
-                <div className="button__">
-                  <button
-                    className="button__style"
-                    style={{ backgroundColor: "lightgreen" }}
-                  >
-                    A
-                  </button>
-                  <button
-                    className="button__style"
-                    style={{ backgroundColor: "red" }}
-                  >
-                    R
-                  </button>
+                <ul>
+                  {brandUser.map((item, index) => (
+                    <li className="Log__in" index={index} key={`${item._id}`}>
+                      {`${item.firstname} ${item.lastname}`}
+                      <div className="button__">
+                        <button
+                          onClick={() => acceptBrandUser(item._id)}
+                          type="submit"
+                          className="button__style"
+                          style={{ backgroundColor: "lightgreen" }}
+                        >
+                          A
+                        </button>
+                        {item._id ? (
+                          <button
+                            onClick={() => rejectBrandUser(item._id)}
+                            className="button__style"
+                            style={{ backgroundColor: "red" }}
+                          >
+                            R
+                          </button>
+                        ) : null}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
                 </div>
               </div>
-              
-            </div>
           </div>
+
           <div className="__master">
             <h4>Channal Search</h4>
             <input
@@ -124,11 +181,13 @@ const AdminMaster = () => {
               name=""
               type="text"
               placeholder="Channal Search "
+              onChange ={(e)=>setSearchBox(e.target.value)}
             />
 
             <button
               className="Log__in"
               style={{ backgroundColor: "lightgreen" }}
+              onClick={searchChannel}
             >
               Submit
             </button>

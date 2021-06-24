@@ -24,6 +24,7 @@ const InfluencerAccess = () => {
     reelPrice: "",
     postPrice: "",
     referral: "",
+    status:"pending"
   });
 
   let name, value;
@@ -54,6 +55,7 @@ const InfluencerAccess = () => {
       reelPrice,
       postPrice,
       referral,
+      status
     } = input;
 
     if (file) {
@@ -95,11 +97,13 @@ const InfluencerAccess = () => {
         reelPrice,
         postPrice,
         referral,
+        status
       }),
     });
     const res = await data.json();
     if (res.statusCode === 400 || !res) {
       alert("YoutubeLink is already exist");
+      return;
     } else {
       alert("Data Successfully Saved!!");
     }
@@ -121,6 +125,7 @@ const InfluencerAccess = () => {
       reelPrice: "",
       postPrice: "",
       referral: "",
+      status:"pending"
     })
   };
 
@@ -338,7 +343,7 @@ const InfluencerAccess = () => {
           </div>
 
           <div className="InfluencerAccess__box">
-            <input type="checkbox" style={{ width: "20px", height: "20px" }} />
+            <input type="checkbox" style={{ width: "20px", height: "20px" }} required />
             <p
               style={{
                 color: "white",
