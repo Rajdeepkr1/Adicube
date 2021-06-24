@@ -22,7 +22,6 @@ const InputForm = () => {
     setInput({ ...input, [name]: value });
   };
   const onSubmit = async (e) => {
-    console.log("invoke brand schema");
     e.preventDefault();
 
     const {
@@ -41,6 +40,7 @@ const InputForm = () => {
     const data = await fetch("http://localhost:4000/brand", {
       method: "POST",
       headers: {
+        Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -56,9 +56,10 @@ const InputForm = () => {
         status,
       }),
     });
+
     const res = await data.json();
     if (res.statusCode === 400 || !res) {
-      alert("YoutubeLink is already exist");
+      alert("email is already exist");
       return;
     } else {
       alert("Data Successfully Saved!!");
@@ -77,7 +78,6 @@ const InputForm = () => {
         status: "pending"
     });
   };
-  console.log(input);
 
   return (
     <div method="POST" className="input__form">
@@ -149,7 +149,7 @@ const InputForm = () => {
           value={input.launchTiming}
           onChange={handleInputs}
           name="launchTiming"
-          type="text"
+          type="date"
           placeholder="Launch Timing"
         />
       </div>

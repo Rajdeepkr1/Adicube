@@ -4,6 +4,7 @@ const AdminMaster = () => {
   const [user, setUser] = useState([]);
   const [brandUser, setBrandUser] = useState([]);
   const [searchBox, setSearchBox] = useState("");
+  const [searchData, setSearchData] = useState([]);
 
   const influencerList = async (e) => {
     try {
@@ -94,12 +95,14 @@ const AdminMaster = () => {
         }
       });
       const data = await res.json();
+      setSearchData(data)
     }
     catch(e){
       console.log(e)
     }
-
   }
+  console.log(searchBox)
+  console.log(searchData)
 
   return (
     <>

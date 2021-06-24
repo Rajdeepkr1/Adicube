@@ -56,7 +56,7 @@ const Influencer = mongoose.model('influencer', influencerSchema)
 
 
 const brandSchema = new mongoose.Schema({
-    profilePic:String,
+    // profilePic:String,
     firstname: {
         type:String,
         required : true
@@ -69,7 +69,7 @@ const brandSchema = new mongoose.Schema({
         type:String,
         required : true
     },
-    mobNumber: {
+    number: {
         type : Number,
         min : 10,
         required : true
@@ -109,7 +109,7 @@ brandSchema.pre('save', async function(next){
     }
     next();
 })
-
+//jwt token generating
 brandSchema.methods.generateAuthToken = async function (){
     try{
         let token = jwt.sign({_id:this._id}, process.env.SECRET)
@@ -123,5 +123,8 @@ brandSchema.methods.generateAuthToken = async function (){
 }
 
 const Brand = mongoose.model('Brand', brandSchema)
+
+
+
 
 module.exports = {Influencer, Brand}

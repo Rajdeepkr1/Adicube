@@ -9,7 +9,7 @@ const AdminLogin = () => {
   const adminLogin = async (e) =>{
     e.preventDefault();
 
-    const data = await fetch("http://localhost:4000/brand", {
+    const data = await fetch("http://localhost:4000/signIn", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -21,10 +21,10 @@ const AdminLogin = () => {
     });
     const res = await data.json();
     if (res.statusCode === 400 || !res) {
-      alert("YoutubeLink is already exist");
+      alert("Invalid Credentials");
       return;
     } else {
-      alert("Data Successfully Saved!!");
+      alert("Logged In!!");
     }
   };
 
@@ -36,7 +36,7 @@ const AdminLogin = () => {
               name="loginId"
               type="text"
               placeholder="Login ID"
-              onchange={(e)=>setLogInId(e.target.value)}
+              onChange={(e)=>setLogInId(e.target.value)}
             />
 
             <input
@@ -44,7 +44,7 @@ const AdminLogin = () => {
               name="password"
               type="password"
               placeholder="Login Password"
-              onchange={(e)=>setPassword(e.target.value)}
+              onChange={(e)=>setPassword(e.target.value)}
             />
 
             <button onClick={adminLogin} className="Log__in" style={{ backgroundColor: "lightgreen" }}>
