@@ -3,6 +3,8 @@ import Header from "./Header";
 import AdminMaster from "./AdminMaster";
 import AdminLogin from "./AdminLogin";
 import AdminNotMaster from "./AdminNotMaster";
+import View from "../view/View";
+
 import "./admin.css";
 const Admin = () => {
   const master = 1;
@@ -12,7 +14,7 @@ const Admin = () => {
       <Header />
       <h3>ADMIN SCREEN</h3>
       <div className="Admin__scren">
-        {!master ? <AdminLogin /> : (user ? <AdminMaster /> : <AdminNotMaster />)}
+        {!user ? <AdminLogin /> : (master ? <><AdminMaster /><View/></> : <AdminNotMaster />)}
       </div>
     </div>
   );
