@@ -10,6 +10,7 @@ const Home = () => {
         <img
           // src="https://adicube.com/wp-content/uploads/2021/03/Add_a_heading-removebg-preview-3.png"
           alt="adicube"
+          // src="https://adicube.com/wp-content/uploads/2021/03/Add_a_heading-removebg-preview-3.png"
         />
       </div>
       <InputForm />
