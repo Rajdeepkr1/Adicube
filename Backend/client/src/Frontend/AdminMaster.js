@@ -38,8 +38,6 @@ const AdminMaster = () => {
   };
   useEffect(() => {
     influencerList();
-  }, []);
-  useEffect(() => {
     brandList();
   }, []);
 
@@ -87,7 +85,7 @@ const AdminMaster = () => {
     e.preventDefault();
 
     try{
-      const res = await fetch("http://localhost:4000/brand", {
+      const res = await fetch(`http://localhost:4000/register/${searchBox}`, {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -101,7 +99,6 @@ const AdminMaster = () => {
       console.log(e)
     }
   }
-  console.log(searchBox)
   console.log(searchData)
 
   return (
@@ -142,9 +139,9 @@ const AdminMaster = () => {
                   ))}
                 </ul>
               </div>
-              </div>
+            </div>
 
-            <div className="brandlist">
+              <div className="brandlist">
               <h3>LIST OF BRANDS</h3>
               <div className="brand__">
                 <ul>
@@ -173,7 +170,7 @@ const AdminMaster = () => {
                     </li>
                   ))}
                 </ul>
-                </div>
+              </div>
               </div>
           </div>
 
