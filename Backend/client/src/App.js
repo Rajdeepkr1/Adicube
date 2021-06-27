@@ -3,6 +3,7 @@ import InfluencerAccess from "./Frontend/InfluencerAccess";
 import BrandLogin from "./Frontend/BrandLogin";
 import MainPage from "./Frontend/MainPage";
 import Admin from "./Frontend/Admin";
+// import View from './view/View';
 function App() {
   return (
     <div className="App">

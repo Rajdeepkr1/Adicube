@@ -3,11 +3,12 @@ import Dashboard from './Dashboard';
 import Ecommerce from './Ecommerce';
 import "./view.css"
 
-const View = () => {
+const View = ({user}) => {
+    
     return (
         <div className="view">
-            <Dashboard/>
-            <Ecommerce/>
+            <Dashboard user = {user}/>
+            <Ecommerce user = {user}/>
         </div>
     )
 }

@@ -11,6 +11,7 @@ const { Influencer, Brand } = require("./schema");
 // filtered data with status pending
 router.get("/register", async (req, res) => {
   try {
+    // const data = await Influencer.find({ status: "pending" });
     const data = await Influencer.find({ });
     res.send(data);
   } catch (err) {
@@ -20,10 +21,29 @@ router.get("/register", async (req, res) => {
 });
 
 // only one user
-router.get("/register/:_id", async (req, res) => {
+router.get("/register/:lastname", async (req, res, next) => {
   try {
-    const id = req.params._id;
-    const data = await Influencer.findById({ _id: id });
+    const id = req.params.lastname;
+    const data = await Influencer.find({lastname:id});
+    if(data){
+      res.send(data);
+    }
+      else{
+        next();
+      }
+
+  } catch (err) {
+    
+    console.log(err);
+    res.send(err);
+  }
+});
+// api for search channel
+router.get('/register/:youtubeChannel', async (req, res)=>{
+  try {
+    console.log("He")
+    const id = req.params.youtubeChannel;
+    const data = await Influencer.find({youtubeChannel:id});
     if (!data) {
       return res.status(400).send();
     } else {
@@ -33,13 +53,6 @@ router.get("/register/:_id", async (req, res) => {
     console.log(err);
     res.send(err);
   }
-});
-// api for search channel
-router.get('/register', (req, res)=>{
-  const searchdata = req.params.youtubeChannel;
-  Influencer.find({youtubeChannel: {$regex: searchdata, $options: '$i'}}).then(data=>{
-    res.json(data)
-  })
 })
 
   const storage = multer.diskStorage({
@@ -172,6 +185,16 @@ router.get("/brand", async (req, res) => {
   }
 });
 
+router.get("/brand/:logInId", async (req, res) => {
+  try {
+    const data = await Brand.findOne({ email: "logInId" });
+    res.send(data);
+  } catch (err) {
+    console.log(err);
+    res.status(400).send(err);
+  }
+});
+
 //api for accept
 router.put("/brand/:_id", async (req, res) => {
   try {
@@ -264,7 +287,7 @@ router.post("/signIn", async (req, res) => {
     let token
     const { logInId, password } = req.body;
     if (!logInId || !password) {
-      return res.status(400).json({ error: "Error valid credentials",statusCode:400 });
+      return res.status(400).json({ error: "Not valid credentials", statusCode:400 });
     }
     const userlogin = await Brand.findOne({ email: logInId });
 
@@ -278,12 +301,12 @@ router.post("/signIn", async (req, res) => {
       })
 
       if (!isMatch) {
-        res.status(400).json({ error: "Not valid credentials" });
+        res.status(400).json({ error: "Not valid credentials", statusCode: 400});
       } else {
         res.json({ message: "logged In" });
       }
     } else {
-      res.status(400).json({ error: "Not valid credentials" });
+      res.status(400).json({ error: "Not valid credentials", statusCode: 400});
     }
   } catch (err) {
     res.json({ err: "Error" });

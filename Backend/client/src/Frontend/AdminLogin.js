@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 import "./admin.css";
+import View from "../view/View";
+import AdminMaster from "./AdminMaster";
+
 
 const AdminLogin = () => {
-
   const [logInId, setLogInId] = useState("");
   const [password, setPassword] = useState("");
+  const [master, setMaster] = useState(false);
 
   const adminLogin = async (e) =>{
     e.preventDefault();
@@ -25,10 +28,13 @@ const AdminLogin = () => {
       return;
     } else {
       alert("Logged In!!");
+      setMaster(true)
+      // history.push("http://localhost:3000/Admin")
     }
   };
 
-    return (
+    return (<>
+      {!master ?
         <div method="POST">
           <div className="Admin__Login">
             <input
@@ -52,7 +58,10 @@ const AdminLogin = () => {
             </button>
           </div>
         </div>
-    )
+    : <><AdminMaster /><View/></>
+      }     
+      </>  
+        )
 }
 
 export default AdminLogin
