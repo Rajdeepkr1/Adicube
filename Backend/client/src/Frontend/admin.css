@@ -30,8 +30,22 @@ h3,h4{
     
 }
 .Log__in{
+    
     border-radius: 5px;
     background-color: aliceblue;
+    list-style: none;
+    padding: 7px;
+    width: 20em;
+    border: 2px solid black;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.Log__search{
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px;
+    background-color: aliceblue;
+    list-style: none;
     padding: 7px;
     width: 20em;
     border: 2px solid black;
@@ -68,13 +82,15 @@ h3,h4{
     flex-direction: column;
     
 }
-.influencer__{
+.influencer__list{
     display: flex;
     margin-top: 10px;
     justify-content: space-around;
+    align-items: center;
 }
 .button__{
     display: flex;
+    align-items: center;
 }
 
 .Not__master{

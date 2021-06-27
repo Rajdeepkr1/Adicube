@@ -1,8 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./view.css";
 import InfluencerFeed from "./InfluencerFeed";
+import axios from 'axios';
 
 const Ecommerce = () => {
+  
+  const [influencerdata, setInfluencerdata] = useState([]);
+
+  
+  
+  const influencerList = async (e) => {
+    try {
+      const res = await fetch("http://localhost:4000/register", {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await res.json();
+       setInfluencerdata(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(()=>{
+    influencerList();
+  },[])
+
+
+
   return (
     <div className="e-commerce">
       <div className="heading">E-COMMERCE</div>
@@ -53,6 +81,14 @@ const Ecommerce = () => {
         <input placeholder="Search Influencer" type="text" />
       </div>
       <div className="feed">
+
+      {influencerdata.map(data=>(
+        <>
+          <InfluencerFeed key={data._id} influencerdata={data} />
+          </>
+      ))}
+        
+        {/* <InfluencerFeed />
         <InfluencerFeed />
         <InfluencerFeed />
         <InfluencerFeed />
@@ -63,8 +99,7 @@ const Ecommerce = () => {
         <InfluencerFeed />
         <InfluencerFeed />
         <InfluencerFeed />
-        <InfluencerFeed />
-        <InfluencerFeed />
+        <InfluencerFeed /> */}
       </div>
     </div>
   );

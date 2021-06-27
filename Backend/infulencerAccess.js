@@ -11,7 +11,7 @@ const { Influencer, Brand } = require("./schema");
 // filtered data with status pending
 router.get("/register", async (req, res) => {
   try {
-    const data = await Influencer.find({ status: "pending" });
+    const data = await Influencer.find({ });
     res.send(data);
   } catch (err) {
     console.log(err);
