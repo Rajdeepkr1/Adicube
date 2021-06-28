@@ -5,7 +5,8 @@ import InfluencerFeed from "./InfluencerFeed";
 const Ecommerce = ({user}) => {
 
   const [influencerdata, setInfluencerdata] = useState([]);
-  const influencerList = async (e) => {
+
+  const influencerList = async () => {
     try {
       const res = await fetch("http://localhost:4000/register", {
         method: "GET",
@@ -24,11 +25,6 @@ const Ecommerce = ({user}) => {
   useEffect(()=>{
     influencerList();
   },[])
-
-  
-  
-  // const data = (influencerdata.concat(posts))
-
 
   return (
     <div className="e-commerce">
@@ -81,9 +77,9 @@ const Ecommerce = ({user}) => {
       </div>
       <div className="feed">
       {influencerdata.map((data,index)=>(
-        <>
-          <InfluencerFeed key = {index} key1={data._id} influencerdata={data} />
-          </>
+        <div key = {index}>
+          <InfluencerFeed influencerdata={data} />
+          </div>
       ))}
       </div>
     </div>
