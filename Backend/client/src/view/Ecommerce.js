@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./view.css";
 import InfluencerFeed from "./InfluencerFeed";
-import axios from 'axios';
 
 const Ecommerce = ({user}) => {
 
   const [influencerdata, setInfluencerdata] = useState([]);
-
-
   const influencerList = async (e) => {
     try {
       const res = await fetch("http://localhost:4000/register", {

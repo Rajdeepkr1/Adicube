@@ -21,10 +21,10 @@ const InfluencerFeed = ({influencerdata}) => {
   useEffect(() => {
     axios.get(youtubeApi)
       .then(res => {
-        const persons = res.data.items[0];
+        const persons = res.data;
         setPosts(persons);
       })
-  }, [posts])
+  }, [])
   console.log(posts)
 
   
@@ -37,8 +37,9 @@ const InfluencerFeed = ({influencerdata}) => {
         <div className="channel__name"><span className="bold" style={{fontSize:"20px"}}>Name Of Youtube channel</span></div>
         
         <div className="channel">
-          <div className="youtube__sub">Youtube Subscribers : <span className="bold">{posts.statistics.subscriberCount}</span></div>
-          <div className="avg__views">Average Views : <span className="bold"></span></div>
+          <div className="youtube__sub">Youtube Subscribers : <span className="bold">{posts.length===0 ? "": posts.items[0]. statistics.subscriberCount}</span></div>
+          
+          <div className="avg__views">Average Views : <span className="bold">{posts.length===0 ? "": posts.items[0]. statistics.videoCount}</span></div>
           {/* {posts ? (posts[0].statistics.viewCount/posts[0].statistics.videoCount).toFixed(2) : ""} */}
         </div>
         <div className="int__Vp">Integrated Video Price : <span className="bold">{influencerdata.intVideoPrice}</span></div>
