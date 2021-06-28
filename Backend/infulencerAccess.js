@@ -29,6 +29,7 @@ router.get("/register/:lastname", async (req, res, next) => {
       res.send(data);
     }
       else{
+        console.log("Fdf")
         next();
       }
 

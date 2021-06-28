@@ -42,7 +42,6 @@ const AdminMaster = () => {
   }, []);
 
   const deleteUser = (id) => {
-    console.log(id);
     let copy = [...user];
     copy = copy.filter((item) => item._id !== id);
     setUser(copy);
@@ -52,7 +51,6 @@ const AdminMaster = () => {
   };
 
   const onAccept = (id) => {
-    console.log(id);
     let copy = [...user];
     copy=copy.filter(item=>item._id!==id);
     setUser(copy);
@@ -62,7 +60,6 @@ const AdminMaster = () => {
   };
 
   const rejectBrandUser = (id) => {
-    console.log(id);
     let copy = [...brandUser];
     copy=copy.filter(item=>item._id!==id);
     setBrandUser(copy);
@@ -72,7 +69,6 @@ const AdminMaster = () => {
   };
 
   const acceptBrandUser = (id) => {
-    console.log(id);
     let copy = [...brandUser];
     copy=copy.filter(item=>item._id!==id);
     setBrandUser(copy);
@@ -99,8 +95,7 @@ const AdminMaster = () => {
       console.log(e)
     }
   }
-  console.log(searchData)
-
+console.log("search data:" + searchData )
   return (
     <>
       <div method="GET">

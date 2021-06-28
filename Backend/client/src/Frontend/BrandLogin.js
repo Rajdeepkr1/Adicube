@@ -25,7 +25,6 @@ const BrandLogin = () => {
       })
     });
     const res = await data.json();
-    console.log(res)
     if (res.statusCode === 400 || !res) {
       alert("Invalid Credentials");
       return;
@@ -48,15 +47,14 @@ const BrandLogin = () => {
         });
         const data = await res.json();
         setUser(data);
-      } catch (err) {
-        console.log(err);
+      } 
+      catch (err) {
+        console.log({err});
       }
     };
-
     useEffect(() => {
       brandDetails();
     },[]);
-    console.log(user)
 
   return (
     <>
