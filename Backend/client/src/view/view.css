@@ -1,5 +1,5 @@
 .view {
-  border-top: 4px solid black;
+  /* border-top: 4px solid black; */
   display: flex;
   justify-content: space-evenly;
 }
@@ -8,7 +8,7 @@
   padding: 20px;
 
   flex: 2;
-  border-right: 4px solid black;
+  /* border-right: 4px solid black; */
   display: flex;
   flex-direction: column;
 }
@@ -42,10 +42,13 @@
   padding: 10px;
 }
 .bold{
-  color: rgb(7, 138, 40);
+  color: rgb(2, 56, 59);
   margin-left: 10px;
   font-size: 15px;
   font-weight: 600;
+   /* font-family: 'Titillium Web', sans-serif; */
+  font-family: 'Cinzel', serif; 
+  /* font-family: 'Great Vibes', cursive; */
 }
 .company__detail,
 .influ__sel__present,
@@ -71,6 +74,7 @@
   color: white;
   padding: 3px;
   font-size: 25px;
+  font-family: 'Cinzel Decorative';
   font-weight: 600;
   border: none;
   border-bottom: 2px solid white;
@@ -88,9 +92,9 @@
 .Language_filter,
 .categories_selection,
 .pricing_filter {
-  width: 20vw;
-  padding: 10px;
-  margin: 1vw;
+  width: 12vw;
+  padding: 8px;
+  margin: 0.2vw;
   font-size: 15px;
   font-weight: 600;
   border: none;
@@ -111,6 +115,7 @@
   border: none;
   background-color: transparent;
   outline-width: 0;
+  width: 30vw;
   text-align: center;
 }
 .influ__feed {
@@ -123,7 +128,7 @@
   border: 2px solid white;
   padding: 5px;
   border-radius: 3px;
-  width: 36.2vw;
+  /* width: 36vw; */
  
 }
 .feed {
@@ -134,10 +139,11 @@
 }
 
 .profile > img {
-  object-fit: contain;
-  height: 100px;
-  width: 160px;
-  border-radius: 10px;
+  object-fit: cover;
+  height: 140px;
+  width: 200px;
+  /* border-radius: 10px; */
+  box-shadow: 0px 0px 5px 0px black;
  
 }
 .channel__name{
@@ -167,9 +173,9 @@
     cursor: pointer;
 }
 .popup{
-    position: sticky;
+    /* position: sticky;
     top: 0;
-    left: 0;
+    left: 0; */
     width: 50vw;
     background-color: rgb(236, 236, 232);
     border: none;
@@ -202,5 +208,30 @@
     margin: 10px;
     
 }
+.pagination__nav{
+  width: 100%;
+  
+}
+.pagination{
+  margin-top: 5px;
+ list-style: none;
+  background-color: #eff2f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+.page-item{
+  height: 25px;
+  width: 25px;
+  background-color: #6384a5;
+  margin: 4px;
+  padding: 2px;
+  
 
+}
+.page-link{
+  color: black;
+  text-decoration: none;
+}
  

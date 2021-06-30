@@ -5,7 +5,7 @@ import "./Header.css";
 
 const InfluencerAccess = () => {
   const [file, setFile] = useState(null);
-  // const PublicFolder = "http://localhost:5000/uploads/"
+   const PublicFolder = "http://localhost:4000/images/"
 
   const [input, setInput] = useState({
     firstname: "",
@@ -144,7 +144,7 @@ const InfluencerAccess = () => {
         <div className="profile__pic">
             
             <img
-              src={file ? URL.createObjectURL(file) :  user.profilePic}
+              src={file ? URL.createObjectURL(file) :user.profilePic}
               alt="profile"
             />
             <label htmlFor="fileInput">
@@ -219,7 +219,7 @@ const InfluencerAccess = () => {
               className="info__box"
               type="number"
               placeholder="Integrated Video Price*"
-              value={input.intVideoPrice}
+              value={input.intVideoPrice.toString()}
               name="intVideoPrice"
               onChange={handleInputs}
             />

@@ -82,12 +82,12 @@ const InputForm = () => {
   return (
     <div method="POST" className="input__form">
       <div className="input__box">
-        <button className="form__box" name="" type="text">
+        {/* <button className="form__box" name="" type="text">
           Pricing (popup)
         </button>
         <button className="form__box" name="" type="text">
           Case Studies(popup)
-        </button>
+        </button> */}
       </div>
       <div className="input__box">
         <input

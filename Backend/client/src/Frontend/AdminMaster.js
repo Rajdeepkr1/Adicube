@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./admin.css";
+import View from './../view/View';
 const AdminMaster = () => {
   const [user, setUser] = useState([]);
   const [brandUser, setBrandUser] = useState([]);
@@ -108,7 +109,7 @@ const AdminMaster = () => {
               <div className="influencer__">
                 <ul>
                   {user.map((item, index) => (
-                    <li className="Log__in" index={index} key={`${item._id}`}>
+                    <li className="Log__search" index={index} key={`${item._id}`}>
                       {`${item.firstname} ${item.lastname}`}
 
                       <div className="button__">
@@ -141,7 +142,7 @@ const AdminMaster = () => {
               <div className="brand__">
                 <ul>
                   {brandUser.map((item, index) => (
-                    <li className="Log__in" index={index} key={`${item._id}`}>
+                    <li className="Log__search" index={index} key={`${item._id}`}>
                       {`${item.firstname} ${item.lastname}`}
                       <div className="button__">
                         <button

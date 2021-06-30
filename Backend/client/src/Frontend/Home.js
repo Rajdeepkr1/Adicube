@@ -8,9 +8,8 @@ const Home = () => {
     <div className="home">
       <div className="header">
         <img
-          // src="https://adicube.com/wp-content/uploads/2021/03/Add_a_heading-removebg-preview-3.png"
+           src="https://s3.amazonaws.com/zaubatrademarks/730a24d8-e99e-48ef-8fff-dd2dc7c5e0ab.png"
           alt="adicube"
-          // src="https://adicube.com/wp-content/uploads/2021/03/Add_a_heading-removebg-preview-3.png"
         />
       </div>
       <InputForm />

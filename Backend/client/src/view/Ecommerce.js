@@ -1,9 +1,22 @@
 import React, { useState, useEffect } from "react";
 import "./view.css";
-import InfluencerFeed from "./InfluencerFeed";
+import InfluencerSearch from "./InfluencerSearch";
+import Pagination from "./Pagination";
 
-const Ecommerce = ({user}) => {
+const Ecommerce = ({ user }) => {
   const [influencerdata, setInfluencerdata] = useState([]);
+  const [inputSearch, setInputSearch] = useState("");
+  const [input, setInput] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(50);
+  const [max, setMax] = useState();
+  const [min, setMin] = useState();
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = influencerdata.slice(indexOfFirstPost, indexOfLastPost);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const influencerList = async () => {
     try {
@@ -15,21 +28,38 @@ const Ecommerce = ({user}) => {
         },
       });
       const data = await res.json();
-       setInfluencerdata(data);
+      setInfluencerdata(data);
     } catch (err) {
       console.log(err);
     }
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     influencerList();
-  },[])
+  }, []);
+
+  function search(currentPosts) {
+    return currentPosts.filter(
+      (row) =>
+        row.firstname.toLowerCase().indexOf(inputSearch) > -1 ||
+        row.lastname.toLowerCase().indexOf(inputSearch) > -1 ||
+        row.email.toLowerCase().indexOf(inputSearch) > -1 ||
+        row.Categories.indexOf(inputSearch) > -1 ||
+        row.Language.indexOf(inputSearch) > -1 ||
+        row.youtubeChannel.toLowerCase().indexOf(inputSearch) > -1 ||
+        (row.intVideoPrice > min && row.intVideoPrice < max)
+    );
+  }
 
   return (
     <div className="e-commerce">
       <div className="heading">{(!user)?"E-COMMERCE":`Welcome ${user.firstname} ${user.lastname}`}</div>
       <div className="all__dropdown">
-        <select className="Language_filter">
+        <select
+          className="Language_filter"
+          value={inputSearch}
+          onChange={(e) => setInputSearch(e.target.value)}
+        >
           <option defaultValue>Language filter dropdown</option>
           <option value="Hindi">Hindi</option>
           <option value="Tamil">Tamil</option>
@@ -44,7 +74,11 @@ const Ecommerce = ({user}) => {
           <option value="Bengali">Bengali</option>
         </select>
 
-        <select className="categories_selection">
+        <select
+          className="categories_selection"
+          value={inputSearch}
+          onChange={(e) => setInputSearch(e.target.value)}
+        >
           Category selection dropdown
           <option defaultValue>Category selection dropdown</option>
           <option value="Travel">Travel</option>
@@ -63,24 +97,52 @@ const Ecommerce = ({user}) => {
           <option value="Health and Fitness">Health and Fitness</option>
           <option value="Music">Music</option>
         </select>
+        <div>
+          <input
+            className="pricing_filter"
+            type="text"
+            placeholder="Min-Price"
+            value={min}
+            onChange={(e) => setMin(e.target.value)}
+          />
+        </div>
+        <div>
+          <input
+            className="pricing_filter"
+            type="text"
+            placeholder="Max-Price"
+            value={max}
+            onChange={(e) => setMax(e.target.value)}
+          />
+        </div>
+        <button
+          className="pricing_filter"
+          value={min <= inputSearch >= max}
+          onClick={(e) => setInputSearch(e.target.value)}
+        >
+          Submit
+        </button>
 
-        <select className="pricing_filter">
-          <option defaultValue>Pricing Filter</option>
-          <option value="Max">Max-Price</option>
-          <option value="Avg">Avg-Price</option>
-          <option value="Min">Min-Price</option>
-        </select>
+        {/* <option defaultValue>Pricing Filter</option>
+          <option value={max}>Max-Price</option>
+          <option value={min}>Min-Price</option> */}
       </div>
       <div className="search__input">
-        <input placeholder="Search Influencer" type="text" />
+        <input
+          placeholder="Search Influencer"
+          type="text"
+          value={inputSearch}
+          onChange={(e) => setInputSearch(e.target.value)}
+        />
       </div>
       <div className="feed">
-      {influencerdata.map((data,index)=>(
-        <div key = {index}>
-          <InfluencerFeed influencerdata={data} />
-          </div>
-      ))}
+        <InfluencerSearch currentPosts={search(currentPosts)} />
       </div>
+      <Pagination
+        postsPerPage={postsPerPage}
+        totalPosts={influencerdata.length}
+        paginate={paginate}
+      />
     </div>
   );
 };
