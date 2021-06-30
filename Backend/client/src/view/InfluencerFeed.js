@@ -43,8 +43,8 @@ const InfluencerFeed = ({influencerdata}) => {
         <div className="profile">
           <img src={user.profilePic} alt="profile" />
         </div>
-        <div className="channel__name"><span className="bold" style={{fontSize:"20px"}}>Name Of Youtube channel</span></div>
-        
+        <div className="channel__name"><span className="bold" style={{fontSize:"20px"}}>Name Of Youtube channel</span>
+        </div>        
         <div className="channel">
           <div className="youtube__sub">Youtube Subscribers : <span className="bold">
             {posts.length===0 ?"" :posts.items[0].statistics.subscriberCount}
@@ -54,17 +54,19 @@ const InfluencerFeed = ({influencerdata}) => {
             {posts.length===0 ?"": (posts.items[0].statistics.viewCount/posts.items[0].statistics.videoCount).toFixed(2)}
             </span></div>
         </div>
-        <div className="int__Vp">Integrated Video Price : <span className="bold">{influencerdata.intVideoPrice}</span></div>
+        <div className="int__Vp">Integrated Video Price : <span className="bold">
+          {influencerdata.intVideoPrice}
+          </span>
+        </div>
         <div className="channel">
-        <div className="view__more" onClick={() => setPopup(true)}>
-          View More
+          <div className="view__more" onClick={() => setPopup(true)}>
+            View More
+          </div>
+          <div className="view__more" onClick={() => setAddto(true)}>
+            Add to Pre/Next month
+          </div>
         </div>
-        <div className="view__more" onClick={() => setAddto(true)}>
-          Add to Pre/Next month
-        </div>
-        </div>
-        <Addtocart trigger={addto} setTrigger={setAddto}  />
-        
+        <Addtocart influencerdata={influencerdata} trigger={addto} setTrigger={setAddto}  />
       </div>
       <ViewMorePopUp posts= {posts} influencerdata={influencerdata} trigger={popup} setTrigger={setPopup} />
     </>

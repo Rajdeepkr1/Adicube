@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import "./admin.css";
-import View from "../view/View";
 import AdminMaster from "./AdminMaster";
-
 
 const AdminLogin = () => {
   const [logInId, setLogInId] = useState("");
@@ -58,7 +56,7 @@ const AdminLogin = () => {
             </button>
           </div>
         </div>
-    : <><AdminMaster /></>
+    : <AdminMaster />
       }     
       </>  
         )
