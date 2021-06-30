@@ -1,11 +1,9 @@
 import Header from "./Header";
 import React, { useEffect, useState } from "react";
 import "./Header.css";
-// import { useHistory } from "react-router-dom";
 import View from "../view/View";
 
 const BrandLogin = () => {
-  // const history = useHistory();
   const [user, setUser] = useState([]);
   const [logInId, setLogInId] = useState("");
   const [password, setPassword] = useState("");
@@ -32,29 +30,27 @@ const BrandLogin = () => {
     else {
       alert("Logged In!!");
       setLoggedIn(true)
-      // history.push("/admin") //mention path wherever you want to redirect
     }
   };
-
   const brandDetails = async()=>{
-      try {
-        const res = await fetch(`http://localhost:4000/brand/${logInId}`, {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-        });
-        const data = await res.json();
-        setUser(data);
-      } 
-      catch (err) {
-        console.log({err});
-      }
-    };
-    useEffect(() => {
-      brandDetails();
-    },[]);
+    try {
+      const res = await fetch(`http://localhost:4000/brand/${logInId}`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await res.json();
+      setUser(data);
+    } 
+    catch (err) {
+      console.log(err);
+    }
+  };
+  useEffect(()=>{
+    brandDetails();
+  },[logInId])
 
   return (
     <>
@@ -87,7 +83,7 @@ const BrandLogin = () => {
           Submit
         </button>
         </div>
-        : <View user= {user}/>
+        : <View user={user}/>
         }
     </>
   );

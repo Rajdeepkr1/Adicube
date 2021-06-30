@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./admin.css";
+import View from './../view/View';
 const AdminMaster = () => {
   const [user, setUser] = useState([]);
   const [brandUser, setBrandUser] = useState([]);
@@ -95,13 +96,13 @@ const AdminMaster = () => {
       console.log(e)
     }
   }
-console.log("search data:" + searchData )
   return (
     <>
       <div method="GET">
         <div className="master">
           <h3>IF MASTER USER</h3>
-          <div className="master__user">
+         { searchData.length!==0 ?searchData.map((item, index)=><div key={index}>{item.firstname}</div>):
+         <div className="master__user">
             <div className="influencer__s">
               <h3>LIST OF INFLUENCERS</h3>
 
@@ -168,7 +169,7 @@ console.log("search data:" + searchData )
               </div>
               </div>
           </div>
-
+          }
           <div className="__master">
             <h4>Channal Search</h4>
             <input

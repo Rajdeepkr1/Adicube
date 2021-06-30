@@ -13,51 +13,87 @@ router.use("/images", express.static(path.join(__dirname, "/images")));
 const { Influencer, Brand } = require("./schema");
 
 // filtered data with status pending
+
+
+// router.get("/register", async (req, res) => {
+//     const lastname = req.query.lastname;
+//     const youtubeChannel = req.query.youtubeChannel;
+
+//   try {
+//     let data;
+//     if(lastname){
+//       console.log("1")
+//       data = await Influencer.find({lastname});
+//     }
+//     else if(youtubeChannel){
+//       console.log("2")
+
+//       data = await Influencer.find({youtubeChannel});
+//     }
+//     else{
+//       console.log("34")
+
+//       data = await Influencer.find({ status : "pending" });
+//     }
+//     res.status(200).json(data);
+//   }
+//   catch (err) {
+//     console.log(err);
+//     res.status(400).send(err);
+//   }
+// });
+
+
 router.get("/register", async (req, res) => {
   try {
-    // const data = await Influencer.find({ status: "pending" });
-    const data = await Influencer.find({ });
+    const data = await Influencer.find({ status: "pending" });
+    // const data = await Influencer.find({ });
     res.send(data);
   } catch (err) {
-    console.log(err);
+    res.status(400).send(err);
+  }
+});
+
+router.get("/register/:status", async (req, res) => {
+
+  const status = req.params.status
+
+  try {
+    const data = await Influencer.find({ status: status });
+    // const data = await Influencer.find({ });
+    res.send(data);
+  } catch (err) {
     res.status(400).send(err);
   }
 });
 
 // only one user
 router.get("/register/:lastname", async (req, res, next) => {
+  const id = req.params.lastname;
   try {
-    const id = req.params.lastname;
     const data = await Influencer.find({lastname:id});
-    if(data){
+    if(data.length===0){
+      next()
+    }
+    else{
       res.send(data);
     }
-      else{
-        console.log("Fdf")
-        next();
-      }
-
   } catch (err) {
-    
-    console.log(err);
-    res.send(err);
+    res.status(400).json(err);
   }
 });
-
-// api for search channel
+// // api for search channel
 router.get('/register/:youtubeChannel', async (req, res)=>{
+  const id = req.params.youtubeChannel;
   try {
-    console.log("He")
-    const id = req.params.youtubeChannel;
     const data = await Influencer.find({youtubeChannel:id});
-    if (!data) {
-      return res.status(400).send();
+    if (data.length===0) {
+      res.status(400).send();
     } else {
       res.send(data);
     }
   } catch (err) {
-    console.log(err);
-    res.send(err);
+    res.status(400).send(err);
   }
 })
 
@@ -75,12 +111,9 @@ router.get('/register/:youtubeChannel', async (req, res)=>{
 router.post("/Backend/upload", upload.single("file"), (req, res) => {
   res.status(200).json("File has been uploaded");
 });
-
-
 //api for accept
 router.put("/register/:_id", async (req, res) => {
   try {
-    console.log(req.body);
     const id = req.params._id;
     const data = await Influencer.findByIdAndUpdate(
       { _id: id },
@@ -92,14 +125,12 @@ router.put("/register/:_id", async (req, res) => {
       res.send(data);
     }
   } catch (err) {
-    console.log(err);
     res.send(err);
   }
 });
 // api for rejection
 router.patch("/register/:_id", async (req, res) => {
   try {
-    console.log(req.body);
     const id = req.params._id;
     const data = await Influencer.findByIdAndUpdate(
       { _id: id },
@@ -111,7 +142,6 @@ router.patch("/register/:_id", async (req, res) => {
       res.send(data);
     }
   } catch (err) {
-    console.log(err);
     res.send(err);
   }
 });
@@ -181,20 +211,26 @@ router.post("/register", (req, res) => {
 
 //=======================apis for brand=================================================
 
+router.get("/brand/:logInId", async (req, res, next) => {
+  const logInId = req.params.logInId
+  try {
+      data = await Brand.findOne({ email: logInId });
+      if(data===null){
+        next()
+      }
+      else{
+        res.send(data);
+    }
+  }
+  catch (err) {
+    res.status(400).json(err);
+  }
+});
+
 
 router.get("/brand", async (req, res) => {
   try {
     const data = await Brand.find({ status: "pending" });
-    res.send(data);
-  } catch (err) {
-    console.log(err);
-    res.status(400).send(err);
-  }
-});
-
-router.get("/brand/:logInId", async (req, res) => {
-  try {
-    const data = await Brand.findOne({ email: "logInId" });
     res.send(data);
   } catch (err) {
     console.log(err);
