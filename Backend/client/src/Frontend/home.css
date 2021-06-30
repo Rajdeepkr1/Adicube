@@ -12,6 +12,8 @@
     color: rgb(56, 56, 56);
 }
 .header>img{
+    margin-top: 10px;
     object-fit: contain;
     width:30vw;
+    height: 10vw;
 }

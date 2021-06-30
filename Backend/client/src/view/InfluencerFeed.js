@@ -10,12 +10,14 @@ const InfluencerFeed = ({influencerdata}) => {
   const [addto, setAddto] = useState(false);
   const [posts, setPosts] = useState([]);
 
+  const PublicFolder = "http://localhost:4000/images/"
+
   const user = {
     profilePic:
       "http://www.mydeen.org/wp-content/uploads/2018/10/Environment-earth_crop.jpg",
   };
   
-  const youtubeApi="https://youtube.googleapis.com/youtube/v3/channels?part=snippet&part=contentDetails&part=statistics&id=UCq-Fj5jknLsUf-MWSy4_brA&key=AIzaSyBoVwvvW80ln1ij9l3a3tP0kRcw8K1bk1M"
+  const youtubeApi="https://youtube.googleapis.com/youtube/v3/channels?part=snippet&part=contentDetails&part=statistics&id=UCJrOtniJ0-NWz37R30urifQ&key=AIzaSyBoVwvvW80ln1ij9l3a3tP0kRcw8K1bk1M"
   
     const youtube = async (e) => {
     try {
@@ -41,9 +43,10 @@ const InfluencerFeed = ({influencerdata}) => {
     <> 
       <div  className="influ__feed">
         <div className="profile">
-          <img src={user.profilePic} alt="profile" />
+          <img src={PublicFolder +influencerdata.profilePic} alt="profile" />
         </div>
-        <div className="channel__name"><span className="bold" style={{fontSize:"20px"}}>Name Of Youtube channel</span></div>
+        <div className="channel__name"><span className="bold" style={{fontSize:"20px"}}>{influencerdata.firstname} {influencerdata.lastname} </span></div>
+        <div className="channel__name">Y-channel :<span className="bold" style={{fontSize:"20px"}}> {posts.length===0 ?"" :posts.items[0].snippet.title}</span></div>
         
         <div className="channel">
           <div className="youtube__sub">Youtube Subscribers : <span className="bold">

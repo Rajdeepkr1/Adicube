@@ -3,8 +3,12 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
+const path = require("path");
 const authenticate = require("../Backend/authenticate");
 require("./connection");
+
+//path of image...
+router.use("/images", express.static(path.join(__dirname, "/images")));
 
 const { Influencer, Brand } = require("./schema");
 
@@ -39,6 +43,7 @@ router.get("/register/:lastname", async (req, res, next) => {
     res.send(err);
   }
 });
+
 // api for search channel
 router.get('/register/:youtubeChannel', async (req, res)=>{
   try {
@@ -56,6 +61,7 @@ router.get('/register/:youtubeChannel', async (req, res)=>{
   }
 })
 
+//image storage....
   const storage = multer.diskStorage({
     destination: (req, file, callback) => {
       callback(null, "images");
