@@ -3,12 +3,11 @@ import "./view.css";
 import InfluencerFeed from "./InfluencerFeed";
 
 const Ecommerce = ({user}) => {
-
   const [influencerdata, setInfluencerdata] = useState([]);
 
   const influencerList = async () => {
     try {
-      const res = await fetch("http://localhost:4000/register", {
+      const res = await fetch("http://localhost:4000/register/accepted", {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -28,7 +27,7 @@ const Ecommerce = ({user}) => {
 
   return (
     <div className="e-commerce">
-      <div className="heading">{!user ?"E-COMMERCE":`Welcome ${user[0].firstname} ${user[0].lastname}`}</div>
+      <div className="heading">{(!user)?"E-COMMERCE":`Welcome ${user.firstname} ${user.lastname}`}</div>
       <div className="all__dropdown">
         <select className="Language_filter">
           <option defaultValue>Language filter dropdown</option>

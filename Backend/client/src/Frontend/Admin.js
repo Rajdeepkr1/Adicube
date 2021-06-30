@@ -1,9 +1,6 @@
 import React from "react";
 import Header from "./Header";
 import AdminMaster from "./AdminMaster";
-import AdminLogin from "./AdminLogin";
-// import AdminNotMaster from "./AdminNotMaster";
-import View from "../view/View";
 
 import "./admin.css";
 const Admin = () => {
@@ -13,7 +10,7 @@ const Admin = () => {
       <Header />
       <h3>ADMIN SCREEN</h3>
       <div className="Admin__scren">
-        <AdminLogin /> :<><AdminMaster /><View/></>
+        <AdminMaster />
       </div>
     </div>
   );

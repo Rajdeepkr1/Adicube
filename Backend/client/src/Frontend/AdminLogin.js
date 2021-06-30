@@ -58,7 +58,7 @@ const AdminLogin = () => {
             </button>
           </div>
         </div>
-    : <><AdminMaster /><View/></>
+    : <><AdminMaster /></>
       }     
       </>  
         )

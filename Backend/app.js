@@ -13,6 +13,52 @@ app.use(cors());
 
 const {Influencer, Brand} = require("./schema");// link to schema
 
+// app.get("/register", async (req, res, next) => {
+//     try {
+//     //   const data = await Influencer.find({ status: "pending" });
+//       const data = await Influencer.find({ });
+//       res.send(data);
+//     } catch (err) {
+//       console.log(err);
+//       res.status(400).send(err);
+//     }
+//   });
+
+//   app.get("/register/:lastname", async (req, res, next) => {
+//     try {
+//       const id = req.params.lastname;
+//       const data = await Influencer.find({lastname:id});
+//       if(data){
+//         res.send(data);
+//       }
+//       else{
+//         console.log("Fdf")
+//         next();
+//       }
+  
+//     } catch (err) {
+//       console.log(err);
+//       res.send(err);
+//     }
+//   });
+//   // api for search channel
+//   app.get('/register/:youtubeChannel', async (req, res)=>{
+//     try {
+//       console.log("He")
+//       const id = req.params.youtubeChannel;
+//       const data = await Influencer.find({youtubeChannel:id});
+//       if (!data) {
+//         return res.status(400).send();
+//       } else {
+//         res.send(data);
+//       }
+//     } catch (err) {
+//       console.log(err);
+//       res.send(err);
+//     }
+//   })
+
+
 app.use(require('./infulencerAccess')); //link to router file
 
 if(process.env.NODE_ENV =="production"){
