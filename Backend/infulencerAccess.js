@@ -47,21 +47,22 @@ const { Influencer, Brand } = require("./schema");
 router.get("/register", async (req, res) => {
   try {
     const data = await Influencer.find({ status: "pending" });
-    // const data = await Influencer.find({ });
     res.send(data);
   } catch (err) {
     res.status(400).send(err);
   }
 });
 
-router.get("/register/:status", async (req, res) => {
-
+router.get("/register/:status", async (req, res, next) => {
   const status = req.params.status
-
   try {
     const data = await Influencer.find({ status: status });
-    // const data = await Influencer.find({ });
-    res.send(data);
+    if(data.length===0){
+      next()
+    }
+    else{
+      res.send(data);
+    }
   } catch (err) {
     res.status(400).send(err);
   }
@@ -83,12 +84,12 @@ router.get("/register/:lastname", async (req, res, next) => {
   }
 });
 // // api for search channel
-router.get('/register/:youtubeChannel', async (req, res)=>{
+router.get('/register/:youtubeChannel', async (req, res, next)=>{
   const id = req.params.youtubeChannel;
   try {
     const data = await Influencer.find({youtubeChannel:id});
     if (data.length===0) {
-      res.status(400).send();
+      next()
     } else {
       res.send(data);
     }
@@ -96,6 +97,21 @@ router.get('/register/:youtubeChannel', async (req, res)=>{
     res.status(400).send(err);
   }
 })
+
+router.get("/register/:_id", async (req, res) => {
+  const _id = req.params._id
+  try {
+    const data = await Influencer.find({ _id: _id });
+    if(!data){
+      res.status(400).send();
+    }
+    else{
+      res.send(data);
+    }
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
 
 //image storage....
   const storage = multer.diskStorage({
@@ -211,12 +227,12 @@ router.post("/register", (req, res) => {
 
 //=======================apis for brand=================================================
 
-router.get("/brand/:logInId", async (req, res, next) => {
+router.get("/brand/:logInId", async (req, res) => {
   const logInId = req.params.logInId
   try {
       data = await Brand.findOne({ email: logInId });
       if(data===null){
-        next()
+        res.send("error")
       }
       else{
         res.send(data);

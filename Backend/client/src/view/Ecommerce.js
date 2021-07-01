@@ -3,10 +3,9 @@ import "./view.css";
 import InfluencerSearch from "./InfluencerSearch";
 import Pagination from "./Pagination";
 
-const Ecommerce = ({ user }) => {
+const Ecommerce = ({ user, perentFunction, nextFunction }) => {
   const [influencerdata, setInfluencerdata] = useState([]);
   const [inputSearch, setInputSearch] = useState("");
-  // const [input, setInput] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(50);
   const [max, setMax] = useState();
@@ -118,7 +117,7 @@ const Ecommerce = ({ user }) => {
         </div>
         <button
           className="pricing_filter"
-          value={min <= inputSearch >= max}
+          value={min <= inputSearch <= max}
           onClick={(e) => setInputSearch(e.target.value)}
         >
           Submit
@@ -137,10 +136,10 @@ const Ecommerce = ({ user }) => {
         />
       </div>
       <div className="feed">
-        <InfluencerSearch currentPosts={search(currentPosts)} />
+        <InfluencerSearch perentFunction = {perentFunction} nextFunction={nextFunction} currentPosts={search(currentPosts)} />
       </div>
       <Pagination
-        postsPerPage={postsPerPage}
+        postsPerPage={postsPerPage} 
         totalPosts={influencerdata.length}
         paginate={paginate}
       />

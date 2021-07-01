@@ -1,12 +1,12 @@
 import React from "react";
 import "./view.css";
 import InfluencerFeed from "./InfluencerFeed";
-const InfluencerSearch = ({ currentPosts }) => {
+const InfluencerSearch = ({ currentPosts, perentFunction, nextFunction }) => {
   return (
     <div className="feed">
       {currentPosts.map((data, index) => (
         <div key={index}>
-          <InfluencerFeed influencerdata={data} />
+          <InfluencerFeed perentFunction={perentFunction} nextFunction={nextFunction} influencerdata={data} />
         </div>
       ))}
     </div>
