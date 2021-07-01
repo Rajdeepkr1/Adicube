@@ -6,7 +6,7 @@ import Pagination from "./Pagination";
 const Ecommerce = ({ user }) => {
   const [influencerdata, setInfluencerdata] = useState([]);
   const [inputSearch, setInputSearch] = useState("");
-  const [input, setInput] = useState("");
+  // const [input, setInput] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(50);
   const [max, setMax] = useState();
@@ -20,7 +20,8 @@ const Ecommerce = ({ user }) => {
 
   const influencerList = async () => {
     try {
-      const res = await fetch("http://localhost:4000/register/accepted", {
+       const res = await fetch("http://localhost:4000/register/accepted", {
+        //const res = await fetch("register/accepted", {
         method: "GET",
         headers: {
           Accept: "application/json",

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./admin.css";
-import View from './../view/View';
 const AdminMaster = () => {
   const [user, setUser] = useState([]);
   const [brandUser, setBrandUser] = useState([]);

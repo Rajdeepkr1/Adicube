@@ -5,7 +5,7 @@ import "./Header.css";
 
 const InfluencerAccess = () => {
   const [file, setFile] = useState(null);
-   const PublicFolder = "http://localhost:4000/images/"
+  //  const PublicFolder = "http://localhost:4000/images/"
 
   const [input, setInput] = useState({
     firstname: "",

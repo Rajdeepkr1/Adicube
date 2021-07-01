@@ -11,11 +11,6 @@ const InfluencerFeed = ({influencerdata}) => {
   const [posts, setPosts] = useState([]);
 
   const PublicFolder = "http://localhost:4000/images/"
-
-  const user = {
-    profilePic:
-      "http://www.mydeen.org/wp-content/uploads/2018/10/Environment-earth_crop.jpg",
-  };
   
   const youtubeApi="https://youtube.googleapis.com/youtube/v3/channels?part=snippet&part=contentDetails&part=statistics&id=UCJrOtniJ0-NWz37R30urifQ&key=AIzaSyBoVwvvW80ln1ij9l3a3tP0kRcw8K1bk1M"
   
@@ -66,7 +61,7 @@ const InfluencerFeed = ({influencerdata}) => {
           Add to Pre/Next month
         </div>
         </div>
-        <Addtocart trigger={addto} setTrigger={setAddto}  />
+        <Addtocart trigger={addto} setTrigger={setAddto} influencerdata={influencerdata} />
         
       </div>
       <ViewMorePopUp posts= {posts} influencerdata={influencerdata} trigger={popup} setTrigger={setPopup} />
