@@ -222,7 +222,7 @@ const AdminMaster = () => {
             <button
               className="Log__in"
               style={{ backgroundColor: "lightgreen" }}
-              onClick={() => setPopup(true)}
+              onClick={() =>setPopup(true)}
             >
               Submit
             </button>
