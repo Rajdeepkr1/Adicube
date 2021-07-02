@@ -65,16 +65,19 @@ const InfluencerAccess = () => {
       data.append("file", file);
       input.profilePic = filename;
       try {
-        await axios.post("http://localhost:4000/Backend/upload", data);
+         await axios.post("http://localhost:4000/Backend/upload", data);
+        //await axios.post("/Backend/upload", data);
       } catch (err) {}
       
-      await axios.post("http://localhost:4000/register", input);
+       await axios.post("http://localhost:4000/register", input);
+      //await axios.post("/register", input);
       
     }
     console.log(input)
     
 
-    const data = await fetch("http://localhost:4000/register", {
+     const data = await fetch("http://localhost:4000/register", {
+    //  const data = await fetch("/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -101,11 +104,11 @@ const InfluencerAccess = () => {
       }),
     });
     const res = await data.json();
-    if (res.statusCode === 400 || !res) {
+    if (!res.statusCode === 400 ) {
       alert("YoutubeLink is already exist");
       return;
     } else {
-      alert("Data Successfully Saved!!");
+      alert("Thanks for registering ! Welcome to Adicube ! We will reach out to You ");
     }
 
     setInput({

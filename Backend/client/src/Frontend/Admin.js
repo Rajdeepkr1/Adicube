@@ -8,7 +8,7 @@ const Admin = () => {
   return (
     <div>
       <Header />
-      <h3>ADMIN SCREEN</h3>
+      {/* <h3>ADMIN SCREEN</h3> */}
       <div className="Admin__scren">
         <AdminMaster />
       </div>

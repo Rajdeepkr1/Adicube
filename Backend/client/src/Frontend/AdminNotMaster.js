@@ -9,7 +9,8 @@ const AdminNotMaster = () => {
     e.preventDefault();
 
     try{
-      const res = await fetch(`http://localhost:4000/register/${searchBox}`, {
+       const res = await fetch(`http://localhost:4000/register/${searchBox}`, {
+       // const res = await fetch(`/register/${searchBox}`, {
         method: "GET",
         headers: {
           Accept: "application/json",

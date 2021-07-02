@@ -6,6 +6,7 @@ import Pagination from "./Pagination";
 const Ecommerce = ({ user, perentFunction, nextFunction }) => {
   const [influencerdata, setInfluencerdata] = useState([]);
   const [inputSearch, setInputSearch] = useState("");
+  const [input, setInput] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(50);
   const [max, setMax] = useState();
@@ -20,7 +21,7 @@ const Ecommerce = ({ user, perentFunction, nextFunction }) => {
   const influencerList = async () => {
     try {
        const res = await fetch("http://localhost:4000/register/accepted", {
-        //const res = await fetch("register/accepted", {
+        //const res = await fetch("/register/accepted", {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -43,10 +44,20 @@ const Ecommerce = ({ user, perentFunction, nextFunction }) => {
       (row) =>
         row.firstname.toLowerCase().indexOf(inputSearch) > -1 ||
         row.lastname.toLowerCase().indexOf(inputSearch) > -1 ||
-        row.email.toLowerCase().indexOf(inputSearch) > -1 ||
-        row.Categories.indexOf(inputSearch) > -1 ||
-        row.Language.indexOf(inputSearch) > -1 ||
-        row.youtubeChannel.toLowerCase().indexOf(inputSearch) > -1 ||
+        row.email.toLowerCase().indexOf(inputSearch) > -1 
+        // row.Categories.indexOf(inputSearch) > -1 ||
+        // row.Language.indexOf(inputSearch) > -1 ||
+        // row.youtubeChannel.toLowerCase().indexOf(inputSearch) > -1 ||
+        // (row.intVideoPrice > min && row.intVideoPrice < max)
+    );
+  }
+
+  function search(currentPosts) {
+    return currentPosts.filter(
+      (row) =>
+        row.Categories.indexOf(input) > -1 ||
+        row.Language.indexOf(input) > -1 ||
+        row.youtubeChannel.toLowerCase().indexOf(input) > -1 ||
         (row.intVideoPrice > min && row.intVideoPrice < max)
     );
   }
@@ -57,8 +68,8 @@ const Ecommerce = ({ user, perentFunction, nextFunction }) => {
       <div className="all__dropdown">
         <select
           className="Language_filter"
-          value={inputSearch}
-          onChange={(e) => setInputSearch(e.target.value)}
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
         >
           <option defaultValue>Language filter dropdown</option>
           <option value="Hindi">Hindi</option>
@@ -76,8 +87,8 @@ const Ecommerce = ({ user, perentFunction, nextFunction }) => {
 
         <select
           className="categories_selection"
-          value={inputSearch}
-          onChange={(e) => setInputSearch(e.target.value)}
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
         >
           Category selection dropdown
           <option defaultValue>Category selection dropdown</option>
@@ -117,8 +128,8 @@ const Ecommerce = ({ user, perentFunction, nextFunction }) => {
         </div>
         <button
           className="pricing_filter"
-          value={min <= inputSearch <= max}
-          onClick={(e) => setInputSearch(e.target.value)}
+          value={min <= input <= max}
+          onClick={(e) => setInput(e.target.value)}
         >
           Submit
         </button>
@@ -127,6 +138,8 @@ const Ecommerce = ({ user, perentFunction, nextFunction }) => {
           <option value={max}>Max-Price</option>
           <option value={min}>Min-Price</option> */}
       </div>
+      {!input?"": <div className="pricing_filter">{input}<button style={{marginLeft:"20px",color:"white",border:"none",background:"red"}} onClick={()=>setInput("")}> X </button></div>}
+      
       <div className="search__input">
         <input
           placeholder="Search Influencer"
