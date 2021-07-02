@@ -90,6 +90,10 @@ const AdminMaster = () => {
     e.preventDefault();
 
     try {
+      if(searchBox===""){
+        return alert("Please enter your search")
+      }
+      else{
       const res = await fetch(`http://localhost:4000/register/${searchBox}`, {
         method: "GET",
         headers: {
@@ -98,14 +102,15 @@ const AdminMaster = () => {
         },
       });
       const data = await res.json();
-      console.log(data)
       if(!data || data.statusCode===400){
         alert("No Data Found")
         return
       }
       else{
       setSearchData(data);
+      setPopup(true)
       }
+    }
     } catch (e) {
       console.log(e);
     }
@@ -116,28 +121,6 @@ const AdminMaster = () => {
       <div method="GET">
         <div className="master">
           <h3> MASTER USER</h3>
-
-
-          {searchData.length !== 0 ? (
-            searchData.map((item, index) => (
-              <div style={{
-                display:"flex",
-                justifyContent:"space-evenly",
-                alignItems:"center",}} key={index}>
-                <h3 
-                  style={{
-                    color: "green",
-                    borderRadius: "5px",
-                    backgroundColor: "aliceblue",
-                    padding: "7px",
-                    width:"36vw"
-                  }}
-                >
-                  {item.firstname} {item.lastname}
-                </h3>
-              </div>
-            ))
-          ) : (
             <div className="master__user">
               <div className="influencer__s">
                 <h3>LIST OF INFLUENCERS</h3>
@@ -213,7 +196,6 @@ const AdminMaster = () => {
                 </div>
               </div>
             </div>
-          )}
 
 
           
@@ -230,12 +212,14 @@ const AdminMaster = () => {
             <button
               className="Log__in"
               style={{ backgroundColor: "lightgreen" }}
-              onClick={() => setPopup(true)}
+              onClick={searchChannel}
             >
               Submit
             </button>
+            
             <AdminSearchDetaill searchData={searchData} trigger={popup} setTrigger={setPopup}/>
           </div>
+          
         </div>
       </div>
     </>
