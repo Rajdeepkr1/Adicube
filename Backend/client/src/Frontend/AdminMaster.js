@@ -5,6 +5,7 @@ const AdminMaster = () => {
   const [user, setUser] = useState([]);
   const [brandUser, setBrandUser] = useState([]);
   const [searchBox, setSearchBox] = useState("");
+  const [error, setError] = useState("");
   const [searchData, setSearchData] = useState([]);
   const [popup, setPopup] = useState(false);
 
@@ -90,7 +91,6 @@ const AdminMaster = () => {
 
     try {
       const res = await fetch(`http://localhost:4000/register/${searchBox}`, {
-        //const res = await fetch(`/register/${searchBox}`, {
         method: "GET",
         headers: {
           Accept: "application/json",
