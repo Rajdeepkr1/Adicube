@@ -4,6 +4,7 @@ const AdminMaster = () => {
   const [user, setUser] = useState([]);
   const [brandUser, setBrandUser] = useState([]);
   const [searchBox, setSearchBox] = useState("");
+  const [error, setError] = useState("");
   const [searchData, setSearchData] = useState([]);
 
   const influencerList = async (e) => {
@@ -92,6 +93,10 @@ const AdminMaster = () => {
       setSearchData(data)
     }
     catch(e){
+      console.log("data not found")
+      setSearchData([])
+      setError("Data not found")
+
       console.log(e)
     }
   }

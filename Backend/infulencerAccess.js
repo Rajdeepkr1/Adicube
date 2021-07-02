@@ -103,7 +103,7 @@ router.get("/register/:_id", async (req, res) => {
   try {
     const data = await Influencer.find({ _id: _id });
     if(!data){
-      res.status(400).send();
+      res.status(400).send({err: "Data not found", statusCode:400});
     }
     else{
       res.send(data);
