@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./admin.css";
+import AdminSearchDetaill from './AdminSearchDetaill';
 const AdminMaster = () => {
   const [user, setUser] = useState([]);
   const [brandUser, setBrandUser] = useState([]);
   const [searchBox, setSearchBox] = useState("");
   const [searchData, setSearchData] = useState([]);
+  const [popup, setPopup] = useState(false);
 
   const influencerList = async (e) => {
     try {
@@ -106,6 +108,8 @@ const AdminMaster = () => {
       <div method="GET">
         <div className="master">
           <h3> MASTER USER</h3>
+
+
           {searchData.length !== 0 ? (
             searchData.map((item, index) => (
               <div style={{
@@ -202,6 +206,9 @@ const AdminMaster = () => {
               </div>
             </div>
           )}
+
+
+          
           <div className="__master">
             <h4>Channal Search</h4>
             <input
@@ -215,10 +222,11 @@ const AdminMaster = () => {
             <button
               className="Log__in"
               style={{ backgroundColor: "lightgreen" }}
-              onClick={searchChannel}
+              onClick={() => setPopup(true)}
             >
               Submit
             </button>
+            <AdminSearchDetaill searchData={searchData} trigger={popup} setTrigger={setPopup}/>
           </div>
         </div>
       </div>
