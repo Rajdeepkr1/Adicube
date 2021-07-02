@@ -35,7 +35,6 @@ const InfluencerAccess = () => {
   };
 
   const onSubmit = async (e) => {
-    console.log("invoke")
     e.preventDefault();
 
     const {
@@ -73,7 +72,6 @@ const InfluencerAccess = () => {
       //await axios.post("/register", input);
       
     }
-    console.log(input)
     
 
      const data = await fetch("http://localhost:4000/register", {
