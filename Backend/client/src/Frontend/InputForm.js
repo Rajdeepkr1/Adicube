@@ -83,6 +83,7 @@ const InputForm = () => {
   return (
     <div method="POST" className="input__form">
       <div className="input__box">
+        <h3>Brand Registration form</h3>
       </div>
       <div className="input__box">
         <input

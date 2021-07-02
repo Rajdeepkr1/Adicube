@@ -14,36 +14,6 @@ const { Influencer, Brand } = require("./schema");
 
 // filtered data with status pending
 
-
-// router.get("/register", async (req, res) => {
-//     const lastname = req.query.lastname;
-//     const youtubeChannel = req.query.youtubeChannel;
-
-//   try {
-//     let data;
-//     if(lastname){
-//       console.log("1")
-//       data = await Influencer.find({lastname});
-//     }
-//     else if(youtubeChannel){
-//       console.log("2")
-
-//       data = await Influencer.find({youtubeChannel});
-//     }
-//     else{
-//       console.log("34")
-
-//       data = await Influencer.find({ status : "pending" });
-//     }
-//     res.status(200).json(data);
-//   }
-//   catch (err) {
-//     console.log(err);
-//     res.status(400).send(err);
-//   }
-// });
-
-
 router.get("/register", async (req, res) => {
   try {
     const data = await Influencer.find({ status: "pending" });
@@ -102,14 +72,14 @@ router.get("/register/:_id", async (req, res) => {
   const _id = req.params._id
   try {
     const data = await Influencer.find({ _id: _id });
-    if(!data){
-      res.status(400).send({err: "Data not found", statusCode:400});
+    if(data.length===0){
+     return res.status(400).send({err: "Data not found", statusCode:400});
     }
     else{
       res.send(data);
     }
   } catch (err) {
-    res.status(400).send(err);
+    res.status(400).send({err: "Data not found", statusCode:400});
   }
 });
 
