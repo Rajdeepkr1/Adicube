@@ -35,7 +35,7 @@ const AdminSearchDetaill = (props) => {
                   }}
                   key={index}
                 >
-                  {item.firstname} {item.lastname}
+                  {item.firstname} {item.lastname} <span style={{marginLeft:"8px",border:"none",background:"red",padding:"3px",textAlign:"center",color:"white",borderRadius:"3px"}}> {item.status}</span>
                 </div>
               ))
             : ""}
