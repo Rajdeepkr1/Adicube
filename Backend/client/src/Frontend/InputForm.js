@@ -37,7 +37,8 @@ const InputForm = () => {
         status
     } = input;
 
-    const data = await fetch("http://localhost:4000/brand", {
+     const data = await fetch("http://localhost:4000/brand", {
+      //const data = await fetch("/brand", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -82,12 +83,6 @@ const InputForm = () => {
   return (
     <div method="POST" className="input__form">
       <div className="input__box">
-        {/* <button className="form__box" name="" type="text">
-          Pricing (popup)
-        </button>
-        <button className="form__box" name="" type="text">
-          Case Studies(popup)
-        </button> */}
       </div>
       <div className="input__box">
         <input

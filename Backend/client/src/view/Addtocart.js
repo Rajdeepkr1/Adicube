@@ -15,7 +15,11 @@ const Addtocart = (props) => {
               </div>
           </div>
         </div>
-    ) : "";
-}
+      
+    
+  ) : (
+    ""
+  );
+};
 
-export default Addtocart
+export default Addtocart;

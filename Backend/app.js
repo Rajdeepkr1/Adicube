@@ -4,7 +4,7 @@ const cors = require("cors");
 const app = express();
 
 dotenv.config();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 4000;
 
 require('./connection') ;// conection to router
 

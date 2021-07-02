@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const NextMonth = (props) => {
 
@@ -21,9 +21,11 @@ const NextMonth = (props) => {
             </div> )}            
           </div>
         </div>
-      ) : (
-        ""
-      );
-}
+      
+    
+  ) : (
+    ""
+  );
+};
 
-export default NextMonth
+export default NextMonth;

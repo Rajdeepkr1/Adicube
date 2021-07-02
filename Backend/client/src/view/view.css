@@ -50,6 +50,14 @@
   font-family: 'Cinzel', serif; 
   /* font-family: 'Great Vibes', cursive; */
 }
+.company__detailStyle{
+  color: rgb(2, 56, 59);
+  margin-left: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: 'Titillium Web', sans-serif;
+
+}
 .company__detail,
 .influ__sel__present,
 .influ__sel__Next {
