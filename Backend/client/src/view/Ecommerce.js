@@ -42,23 +42,15 @@ const Ecommerce = ({ user, perentFunction, nextFunction }) => {
   function search(currentPosts) {
     return currentPosts.filter(
       (row) =>
-        row.firstname.toLowerCase().indexOf(inputSearch) > -1 ||
+       (inputSearch?
+        (row.firstname.toLowerCase().indexOf(inputSearch) > -1 ||
         row.lastname.toLowerCase().indexOf(inputSearch) > -1 ||
-        row.email.toLowerCase().indexOf(inputSearch) > -1 
-        // row.Categories.indexOf(inputSearch) > -1 ||
-        // row.Language.indexOf(inputSearch) > -1 ||
-        // row.youtubeChannel.toLowerCase().indexOf(inputSearch) > -1 ||
-        // (row.intVideoPrice > min && row.intVideoPrice < max)
-    );
-  }
-
-  function search(currentPosts) {
-    return currentPosts.filter(
-      (row) =>
-        row.Categories.indexOf(input) > -1 ||
+        row.email.toLowerCase().indexOf(inputSearch) > -1):
+        (row.Categories.indexOf(input) > -1 ||
         row.Language.indexOf(input) > -1 ||
         row.youtubeChannel.toLowerCase().indexOf(input) > -1 ||
-        (row.intVideoPrice > min && row.intVideoPrice < max)
+        (row.intVideoPrice > min && row.intVideoPrice < max))
+      )
     );
   }
 
