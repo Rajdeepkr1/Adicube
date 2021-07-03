@@ -8,8 +8,8 @@ const InfluencerFeed = ({influencerdata, perentFunction, nextFunction}) => {
   const [addto, setAddto] = useState(false);
   const [posts, setPosts] = useState([]);
 
-   const PublicFolder = "http://localhost:4000/images/"
-  //const PublicFolder = "/images/"
+   //const PublicFolder = "http://localhost:4000/images/"
+  const PublicFolder = "https://adicubeapps.herokuapp.com/images/"
 
   // const user = {
   //   profilePic:

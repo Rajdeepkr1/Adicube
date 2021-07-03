@@ -11,8 +11,8 @@ const BrandLogin = () => {
 
   const adminLogin = async (e) =>{
     e.preventDefault();
-     const data = await fetch("http://localhost:4000/signIn", {
-     // const data = await fetch("/signIn", {
+     //const data = await fetch("http://localhost:4000/signIn", {
+      const data = await fetch("https://adicubeapps.herokuapp.com/signIn", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -35,8 +35,8 @@ const BrandLogin = () => {
   };
   const brandDetails = async()=>{
     try {
-       const res = await fetch(`http://localhost:4000/brand/${logInId}`, {
-        //const res = await fetch(`/brand/${logInId}`, {
+       //const res = await fetch(`http://localhost:4000/brand/${logInId}`, {
+        const res = await fetch(`https://adicubeapps.herokuapp.com/brand/${logInId}`, {
         method: "GET",
         headers: {
           Accept: "application/json",

@@ -10,8 +10,8 @@ const View = ({user}) => {
     
     const perentFunction = async(data)=>{
         try {
-             const res = await fetch(`http://localhost:4000/register/${data}`, {
-              //  const res = await fetch(`/register/${data}`, {
+            // const res = await fetch(`http://localhost:4000/register/${data}`, {
+                const res = await fetch(`https://adicubeapps.herokuapp.com/register/${data}`, {
             method: "GET",
             headers: {
                 Accept: "application/json",
@@ -29,7 +29,8 @@ const View = ({user}) => {
 
     const nextFunction = async(data)=>{
         try {
-            const res = await fetch(`http://localhost:4000/register/${data}`, {
+            // const res = await fetch(`http://localhost:4000/register/${data}`, {
+                const res = await fetch(`https://adicubeapps.herokuapp.com/register/${data}`, {
             method: "GET",
             headers: {
                 Accept: "application/json",

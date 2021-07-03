@@ -37,8 +37,8 @@ const InputForm = () => {
         status
     } = input;
 
-     const data = await fetch("http://localhost:4000/brand", {
-      //const data = await fetch("/brand", {
+     //const data = await fetch("http://localhost:4000/brand", {
+      const data = await fetch("https://adicubeapps.herokuapp.com/brand", {
       method: "POST",
       headers: {
         Accept: "application/json",

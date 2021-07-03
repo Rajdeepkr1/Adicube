@@ -10,8 +10,8 @@ const AdminMaster = () => {
 
   const influencerList = async (e) => {
     try {
-      const res = await fetch("http://localhost:4000/register", {
-        //const res = await fetch("/register", {
+      //const res = await fetch("http://localhost:4000/register", {
+        const res = await fetch("https://adicubeapps.herokuapp.com/register", {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -26,8 +26,8 @@ const AdminMaster = () => {
   };
   const brandList = async (e) => {
     try {
-      const res = await fetch("http://localhost:4000/brand", {
-        //const res = await fetch("/brand", {
+      // const res = await fetch("http://localhost:4000/brand", {
+        const res = await fetch("https://adicubeapps.herokuapp.com/brand", {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -50,8 +50,8 @@ const AdminMaster = () => {
     let copy = [...user];
     copy = copy.filter((item) => item._id !== id);
     setUser(copy);
-    fetch(`http://localhost:4000/register/${id}`, {
-      //fetch(`/register/${id}`,{
+    // fetch(`http://localhost:4000/register/${id}`, {
+      fetch(`https://adicubeapps.herokuapp.com/register/${id}`,{
       method: "PATCH",
     }).then((result) => result.json().then((res) => console.log(res)));
   };
@@ -60,8 +60,8 @@ const AdminMaster = () => {
     let copy = [...user];
     copy = copy.filter((item) => item._id !== id);
     setUser(copy);
-    fetch(`http://localhost:4000/register/${id}`, {
-      // fetch(`/register/${id}`,{
+    //fetch(`http://localhost:4000/register/${id}`, {
+       fetch(`https://adicubeapps.herokuapp.com/register/${id}`,{
       method: "PUT",
     }).then((result) => result.json().then((res) => console.log(res)));
   };
@@ -70,8 +70,8 @@ const AdminMaster = () => {
     let copy = [...brandUser];
     copy = copy.filter((item) => item._id !== id);
     setBrandUser(copy);
-    fetch(`http://localhost:4000/brand/${id}`, {
-      // fetch(`/brand/${id}`,{
+    //fetch(`http://localhost:4000/brand/${id}`, {
+       fetch(`https://adicubeapps.herokuapp.com/brand/${id}`,{
       method: "PATCH",
     }).then((result) => result.json().then((res) => console.log(res)));
   };
@@ -80,8 +80,8 @@ const AdminMaster = () => {
     let copy = [...brandUser];
     copy = copy.filter((item) => item._id !== id);
     setBrandUser(copy);
-    fetch(`http://localhost:4000/brand/${id}`, {
-      // fetch(`/brand/${id}`,{
+    //fetch(`http://localhost:4000/brand/${id}`, {
+       fetch(`https://adicubeapps.herokuapp.com/brand/${id}`,{
       method: "PUT",
     }).then((result) => result.json().then((res) => console.log(res)));
   };
@@ -94,7 +94,8 @@ const AdminMaster = () => {
         return alert("Please enter your search")
       }
       else{
-      const res = await fetch(`http://localhost:4000/register/${searchBox}`, {
+      // const res = await fetch(`http://localhost:4000/register/${searchBox}`, {
+        const res = await fetch(`https://adicubeapps.herokuapp.com/register/${searchBox}`, {
         method: "GET",
         headers: {
           Accept: "application/json",
