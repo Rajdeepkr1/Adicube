@@ -49,7 +49,7 @@ const influencerSchema = new mongoose.Schema({
     reelPrice: Number,
     postPrice: Number,
     referral:String,
-    status : String
+    status : String,
 })
 
 const Influencer = mongoose.model('influencer', influencerSchema)
@@ -93,6 +93,7 @@ const brandSchema = new mongoose.Schema({
         required : true
     },
     status : String,
+    master: String,
     tokens : [
         {
             token : {

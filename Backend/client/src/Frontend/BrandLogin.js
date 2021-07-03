@@ -1,21 +1,21 @@
 import Header from "./Header";
-import React, { useEffect, useState } from "react";
+import React, { useState, useContext } from "react";
+import { Context } from '../context/Context';
 import "./Header.css";
 import View from "../view/View";
 
 const BrandLogin = () => {
-  const [user, setUser] = useState([]);
   const [logInId, setLogInId] = useState("");
   const [password, setPassword] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
+  const {user, dispatch, isFetching} = useContext(Context)
 
   const adminLogin = async (e) =>{
     e.preventDefault();
+    dispatch({type: "LOGIN_START"});
      const data = await fetch("http://localhost:4000/signIn", {
-     // const data = await fetch("/signIn", {
+      // const data = await fetch("/signIn", {
       method: "POST",
       headers: {
-        Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -26,38 +26,21 @@ const BrandLogin = () => {
     const res = await data.json();
     if (res.statusCode === 400 || !res) {
       alert("Invalid Credentials");
+      dispatch({type: "LOGIN_FAILURE"})
       return;
-    } 
-    else {
+    } else {
       alert("Logged In!!");
-      setLoggedIn(true)
+      // setMaster(true)
+      dispatch({type: "LOGIN_SUCCESS", payload: res.userlogin})
+
+      // history.push("http://localhost:3000/Admin")
     }
   };
-  const brandDetails = async()=>{
-    try {
-       const res = await fetch(`http://localhost:4000/brand/${logInId}`, {
-        //const res = await fetch(`/brand/${logInId}`, {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await res.json();
-      setUser(data);
-    } 
-    catch (err) {
-      console.log(err);
-    }
-  };
-  useEffect(()=>{
-    brandDetails();
-  },[logInId])
 
   return (
     <>
       <Header />
-      {!loggedIn? 
+      {!user? 
       <div method="POST" className="BrandLogin">
         <h1 style={{ color: "white", fontWeight: "bold" }}>Brand Login</h1>
         <div className="BrandLogin__box">
@@ -78,7 +61,8 @@ const BrandLogin = () => {
         </div>
         <button
           type="submit"
-          onClick={adminLogin}
+          onClick={adminLogin} 
+          disabled={isFetching}
           className="formbox"
           style={{ backgroundColor: "orange" }}
         >

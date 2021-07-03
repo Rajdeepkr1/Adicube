@@ -278,6 +278,7 @@ router.post("/brand", (req, res) => {
     loginId,
     password,
     status,
+    master
   } = req.body;
 
   Brand.findOne({ email: email }).then(
@@ -300,6 +301,7 @@ router.post("/brand", (req, res) => {
       loginId,
       password,
       status,
+      master
     });
 
     newBrand.save().then(() => {
@@ -319,9 +321,9 @@ router.post("/signIn", async (req, res) => {
       return res.status(400).json({ error: "Not valid credentials", statusCode:400 });
     }
     const userlogin = await Brand.findOne({ email: logInId });
-
     if (userlogin) {
       const isMatch = await bcrypt.compare(password, userlogin.password);
+      
 
       token = await userlogin.generateAuthToken();
       res.cookie("jwtoken", token, {
@@ -332,7 +334,7 @@ router.post("/signIn", async (req, res) => {
       if (!isMatch) {
         res.status(400).json({ error: "Not valid credentials", statusCode: 400});
       } else {
-        res.json({ message: "logged In" });
+        res.json({ message: "logged In", userlogin});
       }
     } else {
       res.status(400).json({ error: "Not valid credentials", statusCode: 400});

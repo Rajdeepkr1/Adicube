@@ -12,7 +12,8 @@ const InputForm = () => {
     launchTiming: "",
     loginId: "",
     password: "",
-    status: "pending"
+    status: "pending",
+    master: "FALSE"
   });
 
   let name, value;
@@ -34,7 +35,8 @@ const InputForm = () => {
         launchTiming,
         loginId,
         password,
-        status
+        status,
+        master
     } = input;
 
      const data = await fetch("http://localhost:4000/brand", {
@@ -55,6 +57,7 @@ const InputForm = () => {
         loginId,
         password,
         status,
+        master
       }),
     });
 
@@ -76,7 +79,8 @@ const InputForm = () => {
         launchTiming: "",
         loginId: "",
         password: "",
-        status: "pending"
+        status: "pending",
+        master:"FALSE"
     });
   };
 
