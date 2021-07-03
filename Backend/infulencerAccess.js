@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const path = require("path");
-const authenticate = require("../Backend/authenticate");
+const authenticate = require("./authenticate");
 require("./connection");
 
 //path of image...
