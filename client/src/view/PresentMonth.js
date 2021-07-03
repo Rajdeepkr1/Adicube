@@ -15,8 +15,8 @@ const PresentMonth = (props) => {
         onClick={() => props.setTrigger(false)}
       ></button>
         {!datas || !newData ?"": newData.map((item,index)=><div key={index} className="companey">
-              Name :<span className="bold">{item.firstname}</span>
-              <span className="bold fas fa-times-circle" ></span>
+              Name :<span className="bold">{item.firstname} {item.lastname}</span>
+              <span className="bold close__btn" >x</span>
             </div> )}
         
       </div>

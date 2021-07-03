@@ -9,13 +9,14 @@ const AdminNotMaster = () => {
 
   const searchChannel = async (e) => {
     e.preventDefault();
-
     try {
       if(searchBox===""){
         return alert("Please enter your search")
       }
       else{
-      const res = await fetch(`http://localhost:4000/register/${searchBox}`, {
+
+       //const res = await fetch(`http://localhost:4000/register/${searchBox}`, {
+        const res = await fetch(`https://adicubeapps.herokuapp.com/register/${searchBox}`, {
         method: "GET",
         headers: {
           Accept: "application/json",

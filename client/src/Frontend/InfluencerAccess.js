@@ -64,18 +64,18 @@ const InfluencerAccess = () => {
       data.append("file", file);
       input.profilePic = filename;
       try {
-         await axios.post("http://localhost:4000/Backend/upload", data);
-        //await axios.post("/Backend/upload", data);
+         //await axios.post("http://localhost:4000/Backend/upload", data);
+        await axios.post("https://adicubeapps.herokuapp.com/Backend/upload", data);
       } catch (err) {}
       
-       await axios.post("http://localhost:4000/register", input);
-      //await axios.post("/register", input);
+      // await axios.post("http://localhost:4000/register", input);
+      await axios.post("https://adicubeapps.herokuapp.com/register", input);
       
     }
     
 
-     const data = await fetch("http://localhost:4000/register", {
-    //  const data = await fetch("/register", {
+     //const data = await fetch("http://localhost:4000/register", {
+      const data = await fetch("https://adicubeapps.herokuapp.com/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

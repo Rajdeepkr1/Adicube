@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const {Influencer, Brand} = require("../Backend/schema");
+// const {Influencer, Brand} = require("../Backend/schema");
 
 const authenticate = async (req, res, next)=>{
     try{

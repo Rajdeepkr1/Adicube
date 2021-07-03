@@ -20,8 +20,8 @@ const Ecommerce = ({ user, perentFunction, nextFunction }) => {
 
   const influencerList = async () => {
     try {
-       const res = await fetch("http://localhost:4000/register/accepted", {
-        //const res = await fetch("/register/accepted", {
+       //const res = await fetch("http://localhost:4000/register/accepted", {
+        const res = await fetch("https://adicubeapps.herokuapp.com/register/accepted", {
         method: "GET",
         headers: {
           Accept: "application/json",

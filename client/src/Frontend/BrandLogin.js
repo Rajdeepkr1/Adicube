@@ -12,8 +12,7 @@ const BrandLogin = () => {
   const adminLogin = async (e) =>{
     e.preventDefault();
     dispatch({type: "LOGIN_START"});
-     const data = await fetch("http://localhost:4000/signIn", {
-      // const data = await fetch("/signIn", {
+    const data = await fetch("https://adicubeapps.herokuapp.com/signIn", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -30,13 +29,10 @@ const BrandLogin = () => {
       return;
     } else {
       alert("Logged In!!");
-      // setMaster(true)
       dispatch({type: "LOGIN_SUCCESS", payload: res.userlogin})
-
       // history.push("http://localhost:3000/Admin")
     }
   };
-
   return (
     <>
       <Header />

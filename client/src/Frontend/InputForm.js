@@ -39,8 +39,8 @@ const InputForm = () => {
         master
     } = input;
 
-     const data = await fetch("http://localhost:4000/brand", {
-      //const data = await fetch("/brand", {
+     //const data = await fetch("http://localhost:4000/brand", {
+      const data = await fetch("https://adicubeapps.herokuapp.com/brand", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -87,6 +87,7 @@ const InputForm = () => {
   return (
     <div method="POST" className="input__form">
       <div className="input__box">
+        <h3>Brand Registration form</h3>
       </div>
       <div className="input__box">
         <input

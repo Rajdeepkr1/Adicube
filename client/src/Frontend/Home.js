@@ -14,7 +14,13 @@ const Home = () => {
       </div>
       <InputForm />
       <Link to="/Admin" style={{ textDecoration: "none", fontWeight: "bold"}}>
-        <div className="homePage " style={{ textDecoration: "none", fontWeight: "bold",margin:"10px"}} >Login To Admin</div>
+        <div style={{
+        marginTop: "5px",
+        display: "flex",
+        justifyContent: "space-evenly",
+      }}>
+        <div className="homePage " style={{ width:"36.2vw", textDecoration: "none", fontWeight: "bold",margin:"10px"}} >Login To Admin</div>
+        </div>
       </Link>
     </div>
   );

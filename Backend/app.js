@@ -13,6 +13,31 @@ app.use(cors());
 
 const {Influencer, Brand} = require("./schema");// link to schema
 
+
+
+
+app.use(require('./infulencerAccess')); //link to router file
+
+// if(process.env.NODE_ENV =="production"){
+//     app.use(express.static("client/build"));
+// }
+
+app.listen(PORT, ()=>{
+    console.log(`successfull listening at ${PORT}`);
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
 // app.get("/register", async (req, res, next) => {
 //     try {
 //     //   const data = await Influencer.find({ status: "pending" });
@@ -57,14 +82,3 @@ const {Influencer, Brand} = require("./schema");// link to schema
 //       res.send(err);
 //     }
 //   })
-
-
-app.use(require('./infulencerAccess')); //link to router file
-
-if(process.env.NODE_ENV =="production"){
-    app.use(express.static("client/build"));
-}
-
-app.listen(PORT, ()=>{
-    console.log(`successfull listening at ${PORT}`);
-})

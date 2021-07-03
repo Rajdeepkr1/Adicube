@@ -8,19 +8,24 @@ const InfluencerFeed = ({influencerdata, perentFunction, nextFunction}) => {
   const [addto, setAddto] = useState(false);
   const [posts, setPosts] = useState([]);
 
-   const PublicFolder = "http://localhost:4000/images/"
-  //const PublicFolder = "/images/"
+   //const PublicFolder = "http://localhost:4000/images/"
+  const PublicFolder = "https://adicubeapps.herokuapp.com/images/"
 
   // const user = {
   //   profilePic:
   //     "http://www.mydeen.org/wp-content/uploads/2018/10/Environment-earth_crop.jpg",
   // };
+<<<<<<< HEAD:Backend/client/src/view/InfluencerFeed.js
  
   const arr = "https://www.youtube.com/c/ThunderGodIndia".trim().split("/");
   const youtubeId=arr[arr.length-1]
   console.log(youtubeId)
 
   const youtubeApi="https://youtube.googleapis.com/youtube/v3/channels?part=snippet&part=contentDetails&part=statistics&id=UCPTw_UvDWKCYtWfZQAOi7pg&key=AIzaSyBoVwvvW80ln1ij9l3a3tP0kRcw8K1bk1M"
+=======
+  
+  const youtubeApi=`https://youtube.googleapis.com/youtube/v3/channels?part=snippet&part=contentDetails&part=statistics&id=${influencerdata.youtubeChannel}&key=AIzaSyBoVwvvW80ln1ij9l3a3tP0kRcw8K1bk1M`
+>>>>>>> 2802c7451551ece145d83d9a160c1a8871706a27:client/src/view/InfluencerFeed.js
   
     const youtube = async (e) => {
     try {
